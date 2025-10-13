@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BuySense 智购引擎：自适应工作流与 Planner-Critic 协同的 3C 商品智能决策系统。" />
-    <title>BuySense 智购引擎 · 梁宸作品集</title>
+    <meta name="description" content="BuySense 智购决策 Agent：面向 3C 主业务、支持版本化领域扩展的搜广推与组合决策平台。" />
+    <title>BuySense 智购决策 Agent · 梁宸作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../assets/site.css" />
   </head>
@@ -23,9 +23,9 @@
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
         <div class="case-hero-grid">
           <div>
-            <span class="section-index">PROJECT 01 · ADAPTIVE AI APPLICATION</span>
-            <h1>BuySense<span>智购引擎</span></h1>
-            <p>面向 3C 商品购买决策的自适应 AI 系统。生产请求只走确定性工作流或 Planner-Critic 混合链路中的一条，让模型负责语义推理，让 Java 守住预算、品类与兼容性。</p>
+            <span class="section-index">PROJECT 01 · BOUNDED DECISION AGENT</span>
+            <h1>BuySense<span>智购决策 Agent</span></h1>
+            <p>以 3C 数码为主业务、户外露营为扩展验证的智能购买决策平台。生产请求只走澄清、确定性工作流或 Planner-Critic 混合链路中的一条，让模型负责语义增强，让 Java 守住预算、库存、广告与兼容性。</p>
           </div>
           <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
         </div>
@@ -47,13 +47,13 @@
         <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>自适应决策链路</h2></div>
           <div>
-            <p>ExecutionRouter 根据品类数、套装、多目标、模糊表达和信息完整度选择单条生产路径。简单请求不调用模型；复杂请求由 Planner 增强检索词和软偏好，所有候选仍经过同一套确定性召回、融合与约束校验。</p>
+            <p>ExecutionRouter 根据品类数、套装、多目标、模糊表达和信息完整度选择 CLARIFICATION、WORKFLOW 或 HYBRID。两个版本化 Domain Pack 共用 10 项能力与有界委派图；简单请求不调用模型，复杂请求只允许 Planner 增强检索词与软偏好。</p>
             <div class="architecture" aria-label="BuySense 自适应决策架构">
               <div><strong>需求解析</strong><span>预算、品类、用途与约束强度</span></div>
-              <div><strong>自适应路由</strong><span>Workflow / Planner-Critic</span></div>
+              <div><strong>领域与路由</strong><span>2 Domain Packs / 10 Capabilities</span></div>
               <div><strong>多路召回</strong><span>Search / Recommendation / Ads</span></div>
               <div><strong>融合与组合</strong><span>Weighted RRF / 全局约束枚举</span></div>
-              <div><strong>证据审核</strong><span>APPROVE / RETRIEVE / CLARIFY</span></div>
+              <div><strong>证据与运行</strong><span>Provider / Critic / Run State</span></div>
             </div>
           </div>
         </section>
@@ -64,33 +64,34 @@
             <li>Search、Recommendation、Ads 通过 Weighted RRF 融合，并在最终排序前执行前三位广告保护和硬过滤。</li>
             <li>套装选择采用有界全局枚举，同时满足预算、品类覆盖与兼容性，避免逐项贪心产生局部最优。</li>
             <li>Critic 只能返回 APPROVE、RETRIEVE 或 CLARIFY；补充检索最多一次，澄清建议还需通过确定性策略门。</li>
-            <li>异步 Run 支持幂等创建、取消、SSE 事件回放、状态恢复和购物车草案确认。</li>
+            <li>Catalog、Review、Pricing Provider 校验来源指纹、版本、ID 分区与报价集合，失败默认关闭；显式降级会在健康接口公开真实来源。</li>
+            <li>异步 Run 支持请求绑定幂等、会话隔离、取消、SSE 事件回放、状态恢复和原提案精确确认，支付始终禁用。</li>
           </ul></div>
         </section>
         <section class="case-section" data-reveal>
-          <div><span class="section-index">04 / EVALUATION</span><h2>真实评测证据</h2></div>
+          <div><span class="section-index">04 / EVALUATION</span><h2>可核验评测证据</h2></div>
           <div>
-            <p>40 条人工业务回归覆盖单品工作流、复杂混合链路、套装、拒绝广告和必须澄清场景，硬约束与广告策略违规均为 0。另以 4 条复杂问句真实接入 DeepSeek，强制双轨运行用于校准路由，而非模拟线上指标。</p>
+            <p>评测按标签来源拆分：40 条人工业务回归验证路由、澄清、套装和拒绝广告；固定种子生成的 120 条 Query / 1,200 SPU 基准验证检索与排序漂移。合成标签来自目录属性，不冒充人工金标或线上效果。</p>
             <div class="evidence-row">
-              <div><strong>40</strong><span>人工业务回归用例</span></div>
-              <div><strong>0</strong><span>硬约束与广告策略违规</span></div>
-              <div><strong>100%</strong><span>DeepSeek 双轨任务完成率</span></div>
+              <div><strong>40</strong><span>人工业务回归</span></div>
+              <div><strong>95.83%</strong><span>Recall@10</span></div>
+              <div><strong>99.57%</strong><span>NDCG@10</span></div>
             </div>
             <table class="decision-table">
-              <thead><tr><th>指标</th><th>确定性工作流</th><th>Planner-Critic 混合链路</th></tr></thead>
+              <thead><tr><th>验证层</th><th>规模</th><th>结果</th></tr></thead>
               <tbody>
-                <tr><td>模型调用 / 降级</td><td>0 / 0</td><td>8 / 0</td></tr>
-                <tr><td>Token 总量</td><td>0</td><td>2,282</td></tr>
-                <tr><td>P50 / P95 延迟</td><td>0 / 2 ms</td><td>2,641 / 2,767 ms</td></tr>
-                <tr><td>Category Recall@10</td><td>100%</td><td>100%</td></tr>
+                <tr><td>Java 单元 / 集成 / 合同</td><td>34 条</td><td>0 失败；真实模型 1 条无凭证跳过</td></tr>
+                <tr><td>合成确定性检索</td><td>120 Query / 1,200 SPU</td><td>硬过滤与广告策略违规 0</td></tr>
+                <tr><td>Playwright 用户链路</td><td>4 条</td><td>4/4 通过，结束后端口自动释放</td></tr>
+                <tr><td>真实商城 / Shopify</td><td>无凭证</td><td>不计入已验证结果</td></tr>
               </tbody>
             </table>
-            <p>样本量为 4，仅用于验证复杂链路可用性和路由成本边界，不宣称为线上推荐质量或生产 SLA。</p>
+            <p>目录是版本化参考快照；远端 Provider 由本地合同服务器验证，不宣称真实商城库存、线上转化率或生产 SLA。</p>
           </div>
         </section>
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2/PostgreSQL、SSE、React、TypeScript、ECharts、LLM、Planner-Critic、Weighted RRF。</p></div>
+          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、SSE、React、TypeScript、ECharts、LLM、Planner-Critic、Weighted RRF、HTTP Provider。</p></div>
         </section>
       </div>
     </main>
