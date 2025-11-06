@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="BuySense 智购引擎：3C 商品智能决策与搜广推 Agent 项目案例。" />
+    <title>BuySense 智购引擎 · 梁宸作品集</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../assets/site.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span>梁宸</span></a>
+      <nav class="site-nav"><a href="../index.html#work">返回项目</a><a href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a></nav>
+    </header>
+    <main>
+      <section class="case-hero">
+        <a class="case-back" href="../index.html#work">← 返回作品集</a>
+        <div class="case-hero-grid">
+          <div>
+            <span class="section-index">PROJECT 01 · AGENT APPLICATION</span>
+            <h1>BuySense<span>智购引擎</span></h1>
+            <p>面向 3C 商品购买决策的多 Agent 搜广推系统。把模糊需求转成可执行约束，并让模型规划与确定性算法在同一条证据链上协作。</p>
+          </div>
+          <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
+        </div>
+      </section>
+      <div class="case-body">
+        <section class="case-section">
+          <div><span class="section-index">01 / PROBLEM</span><h2>解决什么问题</h2></div>
+          <div>
+            <p>用户不会只输入标准关键词，真实问法往往同时包含预算、用途、品牌偏好、性能、兼容性和交付要求。传统检索容易漏掉约束，纯 LLM 推荐又可能虚构价格、库存或商品能力。</p>
+            <table class="decision-table">
+              <thead><tr><th>用户输入</th><th>系统理解</th><th>确定性约束</th></tr></thead>
+              <tbody>
+                <tr><td>5000 内，拍照好，能和我的 Windows 笔记本协同</td><td>手机选购 · 预算优先 · 影像偏好</td><td>价格上限、库存、系统兼容</td></tr>
+                <tr><td>给程序员配一套桌面设备，别推软广</td><td>组合推荐 · 办公开发场景</td><td>品类覆盖、搭配兼容、广告保护</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="case-section">
+          <div><span class="section-index">02 / FLOW</span><h2>决策链路</h2></div>
+          <div>
+            <p>主控 Agent 维护任务边界和预算，角色 Agent 只在自己的职责范围内提出候选与证据。商品价格、库存、兼容性和广告规则由工具服务校验，避免模型直接决定事实。</p>
+            <div class="architecture" aria-label="BuySense 架构链路">
+              <div><strong>Query 理解</strong><span>实体、预算、偏好、硬约束</span></div>
+              <div><strong>多路召回</strong><span>关键词、语义、规则与个性化</span></div>
+              <div><strong>Agent 协作</strong><span>搜索、推荐、广告、质检</span></div>
+              <div><strong>确定性精排</strong><span>RRF、兼容性、价格、库存</span></div>
+              <div><strong>证据输出</strong><span>推荐理由、风险与备选方案</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="case-section">
+          <div><span class="section-index">03 / CONTROL</span><h2>Agent 如何受控</h2></div>
+          <div><ul class="case-list">
+            <li>固定六类角色：Intent、Search、Recommendation、Ads、Critic、Lead，避免角色无限扩张。</li>
+            <li>单次运行限制任务数、模型调用数与复议次数，超限后走确定性降级路径。</li>
+            <li>异步 Run + SSE 返回事件流，支持取消、幂等提交和失败恢复。</li>
+            <li>Critic 只检查证据完整性、约束冲突与广告干扰，不负责重新生成全部结果。</li>
+          </ul></div>
+        </section>
+        <section class="case-section">
+          <div><span class="section-index">04 / EVALUATION</span><h2>评测证据</h2></div>
+          <div>
+            <p>项目内置 120 条确定性检索回归集与 1,200 个合成 SPU，以下结果用于验证召回、排序和业务约束，不等同于线上流量指标。</p>
+            <div class="evidence-row">
+              <div><strong>0.958</strong><span>Recall@10 · 合成回归集</span></div>
+              <div><strong>0.996</strong><span>NDCG@10 · 合成回归集</span></div>
+              <div><strong>0</strong><span>业务约束违规数</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="case-section">
+          <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
+          <div><p>React、TypeScript、Python、FastAPI、SQLite、ECharts、SSE、JSON Schema、Multi-Agent、RRF、离线评测。</p></div>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer"><span>© <span data-year></span> 梁宸</span><a href="../index.html">返回作品集 ↑</a></footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

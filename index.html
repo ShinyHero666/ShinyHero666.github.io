@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="梁宸的 AI 应用开发作品集，聚焦 Agent 编排、搜广推决策与多模型服务治理。" />
+    <meta property="og:title" content="梁宸 · AI 应用开发作品集" />
+    <meta property="og:description" content="从业务 Agent 到模型网关：两个可运行、可解释、可评测的工程项目。" />
+    <meta property="og:type" content="website" />
+    <title>梁宸 · AI 应用开发作品集</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark">LC</span>
+        <span>梁宸</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">☰</button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a href="#work">项目</a>
+        <a href="#engineering">工程能力</a>
+        <a href="#opensource">开源</a>
+        <a href="https://github.com/ShinyHero666" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">AI APPLICATION ENGINEER · BACKEND</p>
+          <h1 id="hero-title">梁宸</h1>
+          <p class="hero-role">AI 应用开发作品集</p>
+          <p class="hero-lead">
+            聚焦 Agent 编排、确定性工具治理与模型基础设施。把自然语言任务拆成可执行链路，
+            再用数据契约、评测集和运行追踪把结果做得可验证。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">查看项目 <span aria-hidden="true">↓</span></a>
+            <a class="button button-secondary" href="https://github.com/ShinyHero666" rel="noreferrer">GitHub @ShinyHero666</a>
+          </div>
+          <ul class="signal-list" aria-label="技术方向">
+            <li>Java / Spring Boot</li>
+            <li>Python / FastAPI</li>
+            <li>Agent / Skills</li>
+            <li>LLM Gateway</li>
+          </ul>
+        </div>
+        <div class="hero-stage" aria-label="两个项目工作台预览">
+          <figure class="stage-shot stage-shot-main">
+            <img src="assets/buysense-console.png" alt="BuySense 智购引擎决策工作台" />
+            <figcaption><strong>BuySense</strong><span>多 Agent 搜广推决策</span></figcaption>
+          </figure>
+          <figure class="stage-shot stage-shot-side">
+            <img src="assets/modelhub-dashboard.png" alt="ModelHub 模型治理控制台" />
+            <figcaption><strong>ModelHub</strong><span>多模型接入与治理</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-label="作品概览">
+        <div><strong>2</strong><span>核心工程项目</span></div>
+        <div><strong>1</strong><span>已合并开源 PR</span></div>
+        <div><strong>6</strong><span>Agent 协作角色</span></div>
+        <div><strong>2</strong><span>兼容模型协议</span></div>
+      </section>
+
+      <section class="project-section" id="work" aria-labelledby="work-title">
+        <div class="section-head">
+          <div>
+            <span class="section-index">01 / PROJECTS</span>
+            <h2 id="work-title">核心项目</h2>
+          </div>
+          <p>不是组件清单，而是从用户问题、Agent 决策到运行治理的完整链路。</p>
+        </div>
+
+        <article class="project project-buy">
+          <div class="project-copy">
+            <span class="project-no">PROJECT 01</span>
+            <h3>智购引擎 <span>BuySense</span></h3>
+            <p class="project-subtitle">3C 商品智能决策与搜广推 Agent</p>
+            <p>
+              面向预算、品牌、兼容性和使用场景混合表达的购买需求，组织意图、搜索、推荐、广告、质检与主控
+              六类角色协作。LLM 负责规划与解释，召回、排序、价格和兼容性由确定性工具执行。
+            </p>
+            <div class="project-points">
+              <span>多路召回 + 加权 RRF</span>
+              <span>有界复议与预算控制</span>
+              <span>SSE 运行追踪</span>
+              <span>离线评测门禁</span>
+            </div>
+            <div class="project-actions">
+              <a class="text-link" href="projects/buysense.html">查看完整案例 <span aria-hidden="true">→</span></a>
+              <a class="text-link muted" href="https://github.com/ShinyHero666/BuySense-Agent" rel="noreferrer">代码仓库</a>
+            </div>
+          </div>
+          <figure class="project-media">
+            <img src="assets/buysense-console.png" alt="BuySense 智购引擎决策工作台界面" loading="lazy" />
+            <figcaption>决策工作台：需求解析、候选商品、Agent 证据与运行状态集中呈现。</figcaption>
+          </figure>
+        </article>
+
+        <article class="project project-model">
+          <div class="project-copy">
+            <span class="project-no">PROJECT 02</span>
+            <h3>模型枢纽 <span>ModelHub</span></h3>
+            <p class="project-subtitle">多模型服务统一接入与治理网关</p>
+            <p>
+              为 Agent 应用提供 Anthropic 与 OpenAI 兼容入口，通过 Provider Adapter 隔离上游差异，
+              将路由、健康检查、冷却、降级、配额和成本预算收敛到统一控制面。
+            </p>
+            <div class="project-points">
+              <span>双协议兼容</span>
+              <span>智能路由与故障转移</span>
+              <span>团队配额与预算</span>
+              <span>请求审计与可观测</span>
+            </div>
+            <div class="project-actions">
+              <a class="text-link" href="projects/modelhub.html">查看完整案例 <span aria-hidden="true">→</span></a>
+              <a class="text-link muted" href="https://github.com/ShinyHero666/ModelHub-Gateway" rel="noreferrer">代码仓库</a>
+            </div>
+          </div>
+          <figure class="project-media">
+            <img src="assets/modelhub-dashboard.png" alt="ModelHub 多模型治理控制台界面" loading="lazy" />
+            <figcaption>治理控制台：路由状态、用量、密钥、模型和审计日志形成统一操作面。</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <section class="engineering" id="engineering" aria-labelledby="engineering-title">
+        <div class="section-head section-head-light">
+          <div>
+            <span class="section-index">02 / ENGINEERING</span>
+            <h2 id="engineering-title">工程方法</h2>
+          </div>
+          <p>Agent 的价值不只在模型调用，而在可控的业务编排、确定性的工具边界和持续评测。</p>
+        </div>
+        <div class="capability-grid">
+          <div><span>01</span><h3>业务编排</h3><p>意图解析、任务拆解、角色协作、人工确认与重规划。</p></div>
+          <div><span>02</span><h3>工具治理</h3><p>Schema 契约、幂等、超时、重试、熔断和执行 Trace。</p></div>
+          <div><span>03</span><h3>数据闭环</h3><p>多路召回、确定性精排、证据链与结果一致性校验。</p></div>
+          <div><span>04</span><h3>评测投产</h3><p>离线数据集、回归门禁、运行指标和失败案例复盘。</p></div>
+        </div>
+      </section>
+
+      <section class="opensource" id="opensource" aria-labelledby="opensource-title">
+        <div class="opensource-copy">
+          <span class="section-index">03 / OPEN SOURCE</span>
+          <h2 id="opensource-title">开源贡献</h2>
+          <p>参与 TestNG Java 测试框架文档完善，围绕嵌套类的 <code>@Ignore</code> 行为补充说明与示例。</p>
+        </div>
+        <a class="pr-proof" href="https://github.com/testng-team/testng/pull/3330" rel="noreferrer">
+          <span class="pr-status">MERGED</span>
+          <strong>testng-team/testng #3330</strong>
+          <span>由维护者合并 · ShinyHero666</span>
+          <b aria-hidden="true">↗</b>
+        </a>
+      </section>
+
+      <section class="contact" aria-labelledby="contact-title">
+        <div>
+          <span class="section-index">CONTACT</span>
+          <h2 id="contact-title">查看代码与提交记录</h2>
+        </div>
+        <a class="button button-primary" href="https://github.com/ShinyHero666" rel="noreferrer">打开 GitHub 主页 <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span data-year></span> 梁宸</span>
+      <span>AI 应用开发 · 后端工程</span>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>
