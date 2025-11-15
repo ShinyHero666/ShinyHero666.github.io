@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="ModelHub 模型枢纽：多模型服务统一接入与治理网关项目案例。" />
-    <title>ModelHub 模型枢纽 · 梁宸作品集</title>
+    <meta name="description" content="RouteSmith 智路网关：多模型智能路由与治理平台项目案例。" />
+    <title>RouteSmith 智路网关 · 梁宸作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../assets/site.css" />
   </head>
@@ -15,7 +15,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
         <span class="sr-only">打开导航</span>
       </button>
-      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/ModelHub-Gateway">项目仓库</a></nav>
+      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith">项目仓库</a></nav>
     </header>
 <a class="skip-link" href="#top">跳到主要内容</a>
     <main id="top" tabindex="-1">
@@ -24,10 +24,10 @@
         <div class="case-hero-grid">
           <div>
             <span class="section-index">PROJECT 02 · AI INFRASTRUCTURE</span>
-            <h1>ModelHub<span>模型枢纽</span></h1>
+            <h1>RouteSmith<span>智路网关</span></h1>
             <p>面向 Agent 应用的统一模型入口。屏蔽不同模型协议与供应商差异，将路由、故障转移、配额、预算和审计集中到可操作的治理控制面。</p>
           </div>
-          <figure><img src="../assets/modelhub-dashboard.png" alt="ModelHub 治理控制台" /></figure>
+          <figure><img src="../assets/routesmith-dashboard.png" alt="RouteSmith 治理控制台" /></figure>
         </div>
       </section>
       <div class="case-body">
@@ -36,7 +36,7 @@
           <div>
             <p>当多个 Agent 直接接入不同模型服务时，协议适配、凭证、重试和成本逻辑会散落在业务代码中。模型切换会扩大改动范围，也难以统一追踪一次请求经过了哪个模型、花费多少、为何降级。</p>
             <table class="decision-table">
-              <thead><tr><th>问题</th><th>ModelHub 的处理</th></tr></thead>
+              <thead><tr><th>问题</th><th>RouteSmith 的处理</th></tr></thead>
               <tbody>
                 <tr><td>OpenAI / Anthropic 请求格式不同</td><td>协议适配层统一消息、流式事件与 Tool Use</td></tr>
                 <tr><td>上游限流或服务异常</td><td>健康检查、冷却、重试和候选模型故障转移</td></tr>
@@ -49,7 +49,7 @@
           <div><span class="section-index">02 / FLOW</span><h2>请求治理链路</h2></div>
           <div>
             <p>业务侧只依赖兼容协议，网关根据调用身份、模型别名、健康状态和预算策略选择上游。每次尝试、降级与结算都进入统一请求台账。</p>
-            <div class="architecture" aria-label="ModelHub 架构链路">
+            <div class="architecture" aria-label="RouteSmith 架构链路">
               <div><strong>兼容入口</strong><span>OpenAI / Anthropic API</span></div>
               <div><strong>身份与预算</strong><span>API Key、团队、配额</span></div>
               <div><strong>智能路由</strong><span>健康、冷却、策略与成本</span></div>
