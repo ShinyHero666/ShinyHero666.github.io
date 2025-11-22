@@ -25,7 +25,7 @@
           <div>
             <span class="section-index">PROJECT 02 · AI INFRASTRUCTURE</span>
             <h1>RouteSmith<span>智路网关</span></h1>
-            <p>基于 Java 17 与 Spring WebFlux 的多模型治理网关。统一 OpenAI / Anthropic 协议，并以可解释路由、故障转移、配额预算和审计台账承接 Agent 应用的模型访问。</p>
+            <p>基于 Java 17 与 Spring WebFlux 的多模型治理网关。统一 OpenAI / Anthropic 协议，并以请求感知路由、延迟 SLO、故障转移和审计台账承接 Agent 应用的模型访问。</p>
           </div>
           <figure><img src="../assets/routesmith-dashboard.png" alt="RouteSmith 治理控制台" /></figure>
         </div>
@@ -48,11 +48,11 @@
         <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>可解释路由链路</h2></div>
           <div>
-            <p>业务侧只依赖兼容协议。RouteSmith 先完成身份、限流、幂等与请求级 token 预算预留，再综合模型质量、调用成本、EWMA 延迟和历史可靠性生成候选分数；每次路由、尝试与降级都保留脱敏 Trace。</p>
+            <p>业务侧只依赖兼容协议。RouteSmith 先抽取输入/输出规模、Tool、流式模式、客户端协议与延迟 SLO，按上下文窗口和能力过滤候选，再结合 Provider 单价、Prefill/Decode 吞吐、EWMA 延迟和可靠性完成请求级排序。</p>
             <div class="architecture" aria-label="RouteSmith 多模型治理链路">
               <div><strong>兼容入口</strong><span>OpenAI Chat / Anthropic Messages</span></div>
               <div><strong>请求治理</strong><span>API Key / 限流 / 幂等 / 预算</span></div>
-              <div><strong>多因子路由</strong><span>质量 / 成本 / EWMA / 可靠性</span></div>
+              <div><strong>请求感知路由</strong><span>能力过滤 / 成本延迟预测 / SLO</span></div>
               <div><strong>Provider Adapter</strong><span>Tool Call / SSE / 协议转换</span></div>
               <div><strong>结算与证据</strong><span>SQL Ledger / Health / Trace</span></div>
             </div>
@@ -62,6 +62,8 @@
           <div><span class="section-index">03 / RELIABILITY</span><h2>故障与额度边界</h2></div>
           <div><ul class="case-list">
             <li>Provider 连续失败达到阈值后打开熔断器；429、5xx、超时和流打开前断连可切换至下一候选。</li>
+            <li>满足延迟 SLO 的候选优先排序，超限候选仍保留为故障兜底并标记未命中；全部不满足时按 best-effort 返回。</li>
+            <li>同协议 SSE 按首包目标路由；跨协议需要缓冲并合成事件，按完整生成耗时估算，避免系统性低估延迟。</li>
             <li>路由计划是有限有序列表，每个候选最多尝试一次，避免级联故障下的重复调用与无限重试。</li>
             <li>token 预算按用户请求预留一次，跨 Provider fallback 不重复占用；成功按真实 usage 结算，失败释放。</li>
             <li>客户端 API Key 与上游 Provider 密钥隔离；幂等缓存和 SQL 用量账本保证重放请求不重复计费。</li>
@@ -71,9 +73,9 @@
         <section class="case-section" data-reveal>
           <div><span class="section-index">04 / EVALUATION</span><h2>测试与真实联调</h2></div>
           <div>
-            <p>12 个自动化测试覆盖 OpenAI/Anthropic 协议转换、Tool Call、SSE、幂等、配额、四类路由策略、熔断和级联断连。真实接入 DeepSeek 完成最近 8 次请求，用于验证网关链路与 Provider 延迟。</p>
+            <p>16 个自动化测试覆盖协议转换、Tool Call、SSE、预算、能力过滤、请求规模路由、延迟 SLO、跨协议流式边界、熔断和级联断连。真实接入 DeepSeek 完成 8 次请求，用于验证网关链路与 Provider 延迟。</p>
             <div class="evidence-row">
-              <div><strong>12/12</strong><span>自动化测试通过</span></div>
+              <div><strong>16/16</strong><span>自动化测试通过</span></div>
               <div><strong>100%</strong><span>8 次真实请求成功率</span></div>
               <div><strong>1222/1410</strong><span>Provider P50 / P95 ms</span></div>
             </div>
@@ -82,6 +84,7 @@
               <tbody>
                 <tr><td>真实 DeepSeek 请求</td><td>8 成功 / 0 降级</td></tr>
                 <tr><td>路由证据</td><td>候选分数、实际 Provider、策略与降级次数可追踪</td></tr>
+                <tr><td>请求画像</td><td>成本、预测延迟、上下文占用与 SLO 命中可解释</td></tr>
                 <tr><td>级联失败</td><td>首选 503、备用断连时每个候选恰好尝试一次并返回明确终态</td></tr>
               </tbody>
             </table>
