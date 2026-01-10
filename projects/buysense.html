@@ -1,23 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BuySense 智购决策 Agent：面向 3C 主业务、支持版本化领域扩展的搜广推与组合决策平台。" />
+    <meta name="description" content="BuySense 智购决策 Agent：Java 17 实现的多领域搜广推与组合决策平台。" />
+    <meta name="theme-color" content="#f5f1e8" />
     <title>BuySense 智购决策 Agent · 梁宸作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../assets/site.css" />
   </head>
   <body>
+    <a class="skip-link" href="#top">跳到主要内容</a>
     <header class="site-header" data-header>
-      <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span>梁宸</span></a>
-<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-        <span class="sr-only">打开导航</span>
-      </button>
-      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent/blob/main/code/java-control-plane/docs/PROJECT_REVIEW_CN.md">架构复审</a></nav>
+      <div class="site-header-inner">
+        <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span class="brand-copy"><strong>LIANG CHEN</strong><small>ENGINEERING ARCHIVE</small></span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <span class="sr-only">打开导航</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="案例导航">
+          <a href="../index.html#work">返回项目</a>
+          <a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a>
+          <a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent/tree/main/code/java-control-plane">Java 源码</a>
+          <a class="nav-external" target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent/actions/workflows/ci.yml">CI 验证 <svg class="icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
+        </nav>
+      </div>
     </header>
-<a class="skip-link" href="#top">跳到主要内容</a>
+
     <main id="top" tabindex="-1">
       <section class="case-hero" data-reveal>
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
@@ -25,11 +34,12 @@
           <div>
             <span class="section-index">PROJECT 01 · BOUNDED DECISION AGENT</span>
             <h1>BuySense<span>智购决策 Agent</span></h1>
-            <p>以 3C 数码为主业务、户外露营为扩展验证的智能购买决策平台。Java 主控按请求复杂度选择澄清、确定性工作流或 Planner-Critic 混合链路，并通过 Java Provider SPI 原生直连 Shopify Admin GraphQL，让模型负责语义增强，让确定性服务守住预算、库存、广告与兼容性。</p>
+            <p>面向 3C 数码与户外露营场景的智能购买决策平台。所有请求执行同一条有界协作链：LLM 负责补充软偏好和受约束的检索意图，Java 服务负责预算、品类、库存、兼容性、广告与交易边界。</p>
           </div>
           <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
         </div>
       </section>
+
       <div class="case-body">
         <section class="case-section" data-reveal>
           <div><span class="section-index">01 / PROBLEM</span><h2>解决什么问题</h2></div>
@@ -39,64 +49,71 @@
               <thead><tr><th>用户输入</th><th>系统理解</th><th>确定性约束</th></tr></thead>
               <tbody>
                 <tr><td>5000 内，拍照好，能和我的 Windows 笔记本协同</td><td>手机选购 · 预算优先 · 影像偏好</td><td>价格上限、库存、系统兼容</td></tr>
-                <tr><td>给程序员配一套桌面设备，别推软广</td><td>组合推荐 · 办公开发场景</td><td>品类覆盖、搭配兼容、广告保护</td></tr>
+                <tr><td>给程序员配一套桌面设备，别推软广</td><td>组合推荐 · 办公开发场景</td><td>品类覆盖、搭配兼容、广告策略</td></tr>
               </tbody>
             </table>
           </div>
         </section>
+
         <section class="case-section" data-reveal>
-          <div><span class="section-index">02 / FLOW</span><h2>自适应决策链路</h2></div>
+          <div><span class="section-index">02 / FLOW</span><h2>有界协作链路</h2></div>
           <div>
-            <p>ExecutionRouter 根据品类数、套装、多目标、模糊表达和信息完整度选择 CLARIFICATION、WORKFLOW 或 HYBRID。两个版本化 Domain Pack 共用 10 项能力与有界委派图；简单请求不调用模型，复杂请求只允许 Planner 增强检索词与软偏好。</p>
-            <div class="architecture" aria-label="BuySense 自适应决策架构">
-              <div><strong>需求解析</strong><span>预算、品类、用途与约束强度</span></div>
-              <div><strong>领域与路由</strong><span>2 Domain Packs / 10 Capabilities</span></div>
-              <div><strong>多路召回</strong><span>Search / Recommendation / Ads</span></div>
-              <div><strong>融合与组合</strong><span>Weighted RRF / 全局约束枚举</span></div>
-              <div><strong>证据与运行</strong><span>Java Shopify / Critic / Leased Run</span></div>
+            <p>系统不再为请求设计容易误判的快慢路由。Intent Router 先解析显式约束并提出检索意图；Search 与 Ads 并行召回，Recommendation 基于搜索证据扩展候选；随后完成融合、组合求解、证据刷新、确定性审核和一次有界 Critic 修订。</p>
+            <div class="architecture" aria-label="BuySense 有界协作架构">
+              <div><strong>意图解析</strong><span>显式约束 / 检索意图 / Domain Pack</span></div>
+              <div><strong>多路召回</strong><span>Search + Ads 并行 / Recommendation 扩展</span></div>
+              <div><strong>融合与组合</strong><span>Weighted RRF / 兼容图枚举</span></div>
+              <div><strong>证据刷新</strong><span>价格 / 库存 / 评论切面</span></div>
+              <div><strong>审核与输出</strong><span>确定性 Audit / Critic / Lead</span></div>
             </div>
           </div>
         </section>
+
         <section class="case-section" data-reveal>
           <div><span class="section-index">03 / CONTROL</span><h2>模型边界与工程控制</h2></div>
-          <div><ul class="case-list">
-            <li>预算、必选品类、广告偏好和兼容性是不可覆盖的硬约束；Query Rewrite 只能补充检索词、用途和软偏好。</li>
-            <li>Search、Recommendation、Ads 通过 Weighted RRF 融合，并在最终排序前执行前三位广告保护和硬过滤。</li>
-            <li>套装选择采用有界全局枚举，同时满足预算、品类覆盖与兼容性，避免逐项贪心产生局部最优。</li>
-            <li>Critic 只能返回 APPROVE、RETRIEVE 或 CLARIFY；补充检索最多一次，澄清建议还需通过确定性策略门。</li>
-            <li>Catalog、Review、Pricing 通过 Java Provider SPI 解耦；Shopify 实现固定 GraphQL 查询、校验只读 Scope、版本、GID、元数据与报价集合，普通决策缓存目录，确认前强制刷新，fallback 快照不能用于确认。</li>
-            <li>异步 Run 采用数据库原子准入、有界队列、租约续期与 fencing，支持取消、SSE 回放和过期任务恢复；确认前刷新价格、库存与兼容性，失败可重试，支付始终禁用。</li>
-          </ul></div>
-        </section>
-        <section class="case-section" data-reveal>
-          <div><span class="section-index">04 / EVALUATION</span><h2>可核验评测证据</h2></div>
           <div>
-            <p>评测按标签来源拆分：40 条人工业务回归验证路由、澄清、套装和拒绝广告；固定种子生成的 120 条 Query / 1,200 SPU 基准验证检索与排序漂移。合成标签来自目录属性，不冒充人工金标或线上效果。</p>
+            <ul class="case-list">
+              <li>Domain Pack 隔离目录、同义词、兼容图、评论切面与业务策略；当前以 3C 为主场景，并用户外露营验证领域扩展边界。</li>
+              <li>LLM 只能补充检索词、软偏好和既有 SKU 排序建议，不能覆盖预算、必选品类、库存、兼容性或广告策略。</li>
+              <li>Search 与 Recommendation 使用 Weighted RRF 融合；Ads 走独立的相关性、质量、疲劳度、披露和展示位门禁。</li>
+              <li>兼容图在预算内枚举可行套装，同时满足品类覆盖和搭配约束，避免逐项贪心产生局部最优。</li>
+              <li>Retail Provider SPI 解耦本地快照、HTTP 数据源和只读 Shopify GraphQL；确认前刷新价格与库存，远端故障快照不能直接确认。</li>
+              <li>异步 Run 采用数据库原子准入、有界执行器、租约续期和 fencing，支持取消、幂等复用、SSE 回放与过期任务恢复。</li>
+              <li>确定性 Audit 先于 Critic 执行，最多允许一次补充检索；最终只生成 <code>paymentAuthorized=false</code> 的购物车草案，不创建订单或发起支付。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="case-section" data-reveal>
+          <div><span class="section-index">04 / EVALUATION</span><h2>可复现工程证据</h2></div>
+          <div>
+            <p>固定种子生成 1,200 个 SPU 与 120 个场景，用于检测检索、排序、硬过滤和广告策略漂移。该数据来自目录属性构造，是离线确定性回归，不冒充人工金标、线上转化率或生产 SLA。</p>
             <div class="evidence-row">
-              <div><strong>40</strong><span>人工业务回归</span></div>
+              <div><strong>120</strong><span>固定回归场景</span></div>
               <div><strong>95.83%</strong><span>Recall@10</span></div>
               <div><strong>99.57%</strong><span>NDCG@10</span></div>
             </div>
             <table class="decision-table">
               <thead><tr><th>验证层</th><th>规模</th><th>结果</th></tr></thead>
               <tbody>
-                <tr><td>Java 单元 / 集成 / 契约</td><td>49 条</td><td>0 失败、0 错误；真实模型 1 条无凭证跳过</td></tr>
-                <tr><td>Java Shopify GraphQL</td><td>7 条</td><td>覆盖直连、分页、确认刷新、Scope、版本、重复 JSON 与降级</td></tr>
-                <tr><td>合成确定性检索</td><td>120 Query / 1,200 SPU</td><td>硬过滤与广告策略违规 0</td></tr>
-                <tr><td>Playwright 用户链路</td><td>4 条</td><td>4/4 通过，结束后端口自动释放</td></tr>
-                <tr><td>真实商城 / Shopify</td><td>无凭证</td><td>不计入已验证结果</td></tr>
+                <tr><td>Java 单元 / 集成 / 契约</td><td>50 项</td><td>0 失败、0 错误；1 项真实模型评测无凭证时跳过</td></tr>
+                <tr><td>Shopify Mock GraphQL</td><td>7 个契约场景</td><td>覆盖直连、分页、确认刷新、Scope、版本、重复字段与降级边界</td></tr>
+                <tr><td>合成检索基准</td><td>120 场景 / 1,200 SPU</td><td>硬过滤违规 0，广告策略违规 0</td></tr>
+                <tr><td>持续集成</td><td>GitHub Actions</td><td>Java 17 构建与测试通过</td></tr>
               </tbody>
             </table>
-            <p>目录是版本化参考快照；Java Shopify Provider 由本地 Mock GraphQL 服务器做契约验证。未配置真实 Shopify 凭证，因此不宣称真实商城库存、线上转化率或生产 SLA。</p>
+            <p>未配置真实 Shopify 店铺凭证，因此页面不宣称真实商城库存、交易结果或生产流量；真实模型评测保持显式开启，CI 不会静默消耗模型额度。</p>
           </div>
         </section>
+
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、Java HttpClient、Shopify GraphQL、SSE、React、TypeScript、LLM、Planner-Critic、Weighted RRF。</p></div>
+          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、Java HttpClient、Shopify GraphQL、SSE、JUnit 5、LLM、Weighted RRF。</p></div>
         </section>
       </div>
     </main>
-    <footer class="site-footer"><span>© <span data-year></span> 梁宸</span><a href="../index.html">返回作品集 ↑</a></footer>
+
+    <footer class="site-footer"><span>&copy; <span data-year></span> 梁宸</span><a href="../index.html">返回作品集 ↑</a></footer>
     <script src="../assets/site.js"></script>
   </body>
 </html>

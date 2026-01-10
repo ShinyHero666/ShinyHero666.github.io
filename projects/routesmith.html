@@ -1,23 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="RouteSmith 智路网关：多模型智能路由与治理平台项目案例。" />
+    <meta name="description" content="RouteSmith 智路网关：基于 Spring WebFlux 的多模型智能路由与治理平台。" />
+    <meta name="theme-color" content="#f5f1e8" />
     <title>RouteSmith 智路网关 · 梁宸作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../assets/site.css" />
   </head>
   <body>
+    <a class="skip-link" href="#top">跳到主要内容</a>
     <header class="site-header" data-header>
-      <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span>梁宸</span></a>
-<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-        <span class="sr-only">打开导航</span>
-      </button>
-      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith">项目仓库</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith/blob/main/java-gateway/docs/PROJECT_REVIEW_CN.md">架构复审</a></nav>
+      <div class="site-header-inner">
+        <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span class="brand-copy"><strong>LIANG CHEN</strong><small>ENGINEERING ARCHIVE</small></span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <span class="sr-only">打开导航</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="案例导航">
+          <a href="../index.html#work">返回项目</a>
+          <a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith">项目仓库</a>
+          <a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith/tree/main/java-gateway">Java 源码</a>
+          <a class="nav-external" target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/RouteSmith/blob/main/java-gateway/docs/PROJECT_REVIEW_CN.md">架构复审 <svg class="icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
+        </nav>
+      </div>
     </header>
-<a class="skip-link" href="#top">跳到主要内容</a>
+
     <main id="top" tabindex="-1">
       <section class="case-hero" data-reveal>
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
@@ -25,79 +34,87 @@
           <div>
             <span class="section-index">PROJECT 02 · AI INFRASTRUCTURE</span>
             <h1>RouteSmith<span>智路网关</span></h1>
-            <p>基于 Java 17 与 Spring WebFlux 的多模型治理网关。统一 OpenAI / Anthropic 协议，并以请求感知路由、延迟 SLO、故障转移和审计台账承接 Agent 应用的模型访问。</p>
+            <p>基于 Java 17 与 Spring WebFlux 实现的多模型治理网关。统一 OpenAI / Anthropic 协议，并以请求感知路由、延迟 SLO、故障转移、预算账本和幂等复用承接 Agent 应用的模型访问。</p>
           </div>
           <figure><img src="../assets/routesmith-dashboard.png" alt="RouteSmith 治理控制台" /></figure>
         </div>
       </section>
+
       <div class="case-body">
         <section class="case-section" data-reveal>
           <div><span class="section-index">01 / PROBLEM</span><h2>为什么需要网关</h2></div>
           <div>
-            <p>当多个 Agent 直接接入不同模型服务时，协议适配、凭证、重试和成本逻辑会散落在业务代码中。模型切换会扩大改动范围，也难以统一追踪一次请求经过了哪个模型、花费多少、为何降级。</p>
+            <p>当多个 Agent 直接接入不同模型服务时，协议适配、凭证、重试和成本逻辑会散落在业务代码中。模型切换会扩大改动范围，也难以统一追踪一次请求经过了哪个 Provider、花费多少、为何降级。</p>
             <table class="decision-table">
               <thead><tr><th>问题</th><th>RouteSmith 的处理</th></tr></thead>
               <tbody>
-                <tr><td>OpenAI / Anthropic 请求格式不同</td><td>协议适配层统一消息、流式事件与 Tool Use</td></tr>
-                <tr><td>上游限流或服务异常</td><td>健康检查、冷却、重试和候选模型故障转移</td></tr>
-                <tr><td>团队成本难以控制</td><td>Scoped API Key、团队配额、预算预留与结算</td></tr>
+                <tr><td>OpenAI / Anthropic 请求格式不同</td><td>协议适配层统一消息、Tool Call、结束原因、Usage 与 SSE</td></tr>
+                <tr><td>上游限流或服务异常</td><td>健康状态、熔断、冷却与有限候选故障转移</td></tr>
+                <tr><td>团队额度难以控制</td><td>请求级预算预留、真实 Usage 结算和 SQL 用量账本</td></tr>
               </tbody>
             </table>
           </div>
         </section>
+
         <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>可解释路由链路</h2></div>
           <div>
-            <p>业务侧只依赖兼容协议。RouteSmith 先抽取输入/输出规模、Tool、流式模式、客户端协议与延迟 SLO，按上下文窗口和能力过滤候选，再结合 Provider 单价、Prefill/Decode 吞吐、EWMA 延迟和可靠性完成请求级排序。</p>
+            <p>业务侧只依赖统一兼容协议。RouteSmith 先抽取输入 / 输出 Token、Tool、流式模式、客户端协议与延迟 SLO，按上下文窗口、Tool 和流式能力硬过滤候选，再结合价格、Prefill / Decode 吞吐、EWMA 延迟和可靠性完成请求级排序。</p>
             <div class="architecture" aria-label="RouteSmith 多模型治理链路">
               <div><strong>兼容入口</strong><span>OpenAI Chat / Anthropic Messages</span></div>
-              <div><strong>请求治理</strong><span>API Key / 限流 / 幂等 / 预算</span></div>
+              <div><strong>请求治理</strong><span>API Key / 幂等 / 预算预留</span></div>
               <div><strong>请求感知路由</strong><span>能力过滤 / 成本延迟预测 / SLO</span></div>
-              <div><strong>Provider Adapter</strong><span>Tool Call / SSE / 协议转换</span></div>
-              <div><strong>结算与证据</strong><span>SQL Ledger / Health / Trace</span></div>
+              <div><strong>Provider 适配</strong><span>Tool Call / SSE / 协议转换</span></div>
+              <div><strong>结算与证据</strong><span>SQL Ledger / Health / Route Trace</span></div>
             </div>
           </div>
         </section>
+
         <section class="case-section" data-reveal>
           <div><span class="section-index">03 / RELIABILITY</span><h2>故障与额度边界</h2></div>
-          <div><ul class="case-list">
-            <li>Provider 连续失败达到阈值后打开熔断器；429、5xx、超时和流打开前断连可切换至下一候选。</li>
-            <li>满足延迟 SLO 的候选优先排序，超限候选仍保留为故障兜底并标记未命中；全部不满足时按 best-effort 返回。</li>
-            <li>同协议 SSE 按首包目标路由；跨协议需要缓冲并合成事件，按完整生成耗时估算，避免系统性低估延迟。</li>
-            <li>路由计划是有限有序列表，每个候选最多尝试一次，避免级联故障下的重复调用与无限重试。</li>
-            <li>token 预算按用户请求预留一次，跨 Provider fallback 不重复占用；成功按真实 usage 结算，失败释放。</li>
-            <li>客户端 API Key 与上游 Provider 密钥隔离；幂等缓存和 SQL 用量账本保证重放请求不重复计费。</li>
-            <li>流式响应开始后不再切换模型，避免客户端收到重复或语义不一致的 token。</li>
-          </ul></div>
-        </section>
-        <section class="case-section" data-reveal>
-          <div><span class="section-index">04 / EVALUATION</span><h2>测试与真实联调</h2></div>
           <div>
-            <p>16 个自动化测试覆盖协议转换、Tool Call、SSE、预算、能力过滤、请求规模路由、延迟 SLO、跨协议流式边界、熔断和级联断连。真实接入 DeepSeek 完成 8 次请求，用于验证网关链路与 Provider 延迟。</p>
-            <div class="evidence-row">
-              <div><strong>16/16</strong><span>自动化测试通过</span></div>
-              <div><strong>100%</strong><span>8 次真实请求成功率</span></div>
-              <div><strong>1222/1410</strong><span>Provider P50 / P95 ms</span></div>
-            </div>
-            <table class="decision-table">
-              <thead><tr><th>验证项</th><th>结果</th></tr></thead>
-              <tbody>
-                <tr><td>真实 DeepSeek 请求</td><td>8 成功 / 0 降级</td></tr>
-                <tr><td>路由证据</td><td>候选分数、实际 Provider、策略与降级次数可追踪</td></tr>
-                <tr><td>请求画像</td><td>成本、预测延迟、上下文占用与 SLO 命中可解释</td></tr>
-                <tr><td>级联失败</td><td>首选 503、备用断连时每个候选恰好尝试一次并返回明确终态</td></tr>
-              </tbody>
-            </table>
-            <p>上述数据是功能与延迟烟测，不是生产吞吐压测；跨 Provider 故障转移由 MockWebServer 集成测试验证。</p>
+            <ul class="case-list">
+              <li>先执行上下文窗口、Tool 能力、流式能力与 Provider 健康状态硬过滤，评分不能让不兼容候选重新进入列表。</li>
+              <li>质量、成本、延迟与均衡策略共享同一请求画像；满足延迟 SLO 的候选优先，全部超限时选择预测最优的 best-effort 结果并留下 Trace。</li>
+              <li>同协议 SSE 可原生透传并关注首包时间；跨协议转换需要完整聚合后合成事件，因此按完整生成耗时估算。</li>
+              <li>429、5xx、超时和首包前断连可切换到下一候选；路由计划是有限有序列表，每个候选最多尝试一次。</li>
+              <li>Provider 连续失败达到阈值后打开熔断器；流式响应已经输出内容后不再切换，避免重复或语义不一致的 Token。</li>
+              <li>同一业务请求只预留一次 Token 预算，跨 Provider fallback 不重复占用；成功按真实 Usage 结算，全部失败时释放。</li>
+              <li>客户端 API Key 与上游 Provider 凭证隔离；幂等响应缓存与追加式 SQL 用量账本分别约束重复执行和计费追溯。</li>
+            </ul>
           </div>
         </section>
+
+        <section class="case-section" data-reveal>
+          <div><span class="section-index">04 / EVALUATION</span><h2>可复现工程验证</h2></div>
+          <div>
+            <p>自动化测试围绕协议、路由、故障和额度正确性构建。页面只保留仓库中可由测试代码复现的数据，不再展示缺少原始报告的真实模型延迟数字。</p>
+            <div class="evidence-row">
+              <div><strong>16/16</strong><span>自动化测试通过</span></div>
+              <div><strong>10/50</strong><span>并发预算竞争放行</span></div>
+              <div><strong>1/100</strong><span>幂等重放 Provider 调用</span></div>
+            </div>
+            <table class="decision-table">
+              <thead><tr><th>验证项</th><th>场景</th><th>结果</th></tr></thead>
+              <tbody>
+                <tr><td>协议与路由</td><td>消息、Tool Call、SSE、四类策略、能力过滤、请求规模与延迟 SLO</td><td>契约与选择结果符合预期</td></tr>
+                <tr><td>预算竞争</td><td>50 个并发 100-Token 请求竞争 1,000-Token 额度</td><td>仅 10 个请求成功预留</td></tr>
+                <tr><td>幂等复用</td><td>同一幂等键顺序重放 100 次</td><td>只产生 1 次 Provider 调用</td></tr>
+                <tr><td>级联失败</td><td>主 Provider 连续 503；主 503 与备用断连</td><td>熔断后旁路；每个候选各尝试一次并返回明确 502</td></tr>
+              </tbody>
+            </table>
+            <p>并发额度测试使用本地 H2 验证事务正确性，不外推为 PostgreSQL 生产吞吐；跨 Provider 故障链由 MockWebServer 注入，不宣称生产 SLA。</p>
+          </div>
+        </section>
+
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>Java 17、Spring WebFlux、Reactor、WebClient、Flyway、H2/PostgreSQL、SSE、JUnit 5、MockWebServer、React、TypeScript、OpenAI/Anthropic API。</p></div>
+          <div><p>Java 17、Spring WebFlux、Reactor、WebClient、Spring JDBC、Flyway、H2 / PostgreSQL、SSE、JUnit 5、MockWebServer、OpenAI / Anthropic API。</p></div>
         </section>
       </div>
     </main>
-    <footer class="site-footer"><span>© <span data-year></span> 梁宸</span><a href="../index.html">返回作品集 ↑</a></footer>
+
+    <footer class="site-footer"><span>&copy; <span data-year></span> 梁宸</span><a href="../index.html">返回作品集 ↑</a></footer>
     <script src="../assets/site.js"></script>
   </body>
 </html>
