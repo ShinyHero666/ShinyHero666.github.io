@@ -1,124 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="梁宸的 AI 应用与 Java 后端工程作品集，聚焦 Agent 决策系统、多模型网关与开源协作。" />
-    <meta name="theme-color" content="#f5f1e8" />
-    <meta property="og:title" content="梁宸 · AI 应用与 Java 后端工程作品集" />
-    <meta property="og:description" content="有界 Agent、模型基础设施与持续开源协作。" />
-    <meta property="og:type" content="website" />
-    <title>梁宸 · AI 应用与 Java 后端工程作品集</title>
-    <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="assets/site.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#top">跳到主要内容</a>
-    <header class="site-header" data-header>
-      <div class="site-header-inner">
-        <a class="brand" href="#top" aria-label="回到首页">
-          <span class="brand-mark">LC</span>
-          <span class="brand-copy"><strong>LIANG CHEN</strong><small>AI APPLICATION / JAVA BACKEND</small></span>
-        </a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
-          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-          <span class="sr-only">打开导航</span>
-        </button>
-        <nav id="site-nav" class="site-nav" aria-label="主导航">
-          <a href="#opensource"><span>01</span>开源协作</a>
-          <a href="#work"><span>02</span>核心项目</a>
-          <a class="nav-external" href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank">GitHub <svg class="icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top" tabindex="-1">
-      <section class="archive-hero" aria-labelledby="hero-title" data-reveal>
-        <div class="hero-index" aria-hidden="true"><span>ARCHIVE</span><strong>2026</strong><i></i></div>
-        <div class="hero-copy">
-          <p class="hero-identity">梁宸 / LIANG CHEN</p>
-          <p class="kicker">AI APPLICATION ENGINEER / JAVA BACKEND</p>
-          <h1 id="hero-title">让智能能力<br /><em>成为可靠系统。</em></h1>
-          <p class="hero-intro">大连理工大学（985）软件学院网络工程本科生，聚焦 Java 后端与 AI 应用工程。实践 Agent 有界协作、模型服务治理、证据链与可恢复运行，并通过公开协作沉淀真实工程记录。</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#work">查看核心项目 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
-            <a class="button button-quiet" href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank">打开 GitHub <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
-          </div>
-          <div class="hero-footnote"><span class="status-dot"></span> Java · Spring Boot · Agent Systems · Open Source</div>
-        </div>
-        <div class="profile-board" aria-label="个人工程能力概览">
-          <div class="profile-board-head"><span>ENGINEERING PROFILE</span><span>2027 GRADUATE</span></div>
-          <div class="profile-board-title"><span>AI × BACKEND</span><strong>从模型能力到<br />可落地工程</strong></div>
-          <dl class="profile-summary">
-            <div><dt>PROJECTS</dt><dd><strong>02</strong><span>Agent 决策与模型网关</span></dd></div>
-            <div class="profile-stars"><dt>OPEN SOURCE REACH</dt><dd><strong>50k+</strong><span>协作项目累计 Stars</span></dd></div>
-            <div><dt>FOCUS</dt><dd><strong>04</strong><span>编排 · 检索 · 治理 · 评测</span></dd></div>
-          </dl>
-          <div class="profile-board-foot"><span>JAVA / SPRING / POSTGRESQL / LLM</span><a href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank" aria-label="打开 GitHub">↗</a></div>
-        </div>
-      </section>
-
-      <section class="metrics-band" aria-label="档案概览" data-reveal>
-        <div class="metrics-inner">
-          <div class="metric metric-lead"><span class="metric-label">ENGINEERING ARCHIVE</span><strong>AI × JAVA</strong><span>从业务问题到可核验工程实现</span></div>
-          <div class="metric"><strong>02</strong><span>核心应用项目</span></div>
-          <div class="metric"><strong>08</strong><span>公开 PR 协作</span></div>
-          <div class="metric"><strong>50k+</strong><span>协作项目累计 Stars</span></div>
-        </div>
-      </section>
-
-      <section class="opensource-section section-shell" id="opensource" aria-labelledby="opensource-title" data-reveal>
-        <div class="section-heading open-source-heading">
-          <div><span class="section-number">01</span><span class="kicker">PUBLIC COLLABORATION</span><h2 id="opensource-title">持续参与<br /><em>开源协作。</em></h2></div>
-          <div><p>从 Issue 复现、最小修复到回归测试与 CI，覆盖 Java 工具链、Agent 运行时、金融数据应用与效率工具。</p><p class="subtle-note">以下贡献均有公开 PR，可直接查看代码、测试与讨论。</p></div>
-        </div>
-        <div class="opensource-toolbar"><span><i class="status-dot"></i> 8 PUBLIC PRS</span><strong>相关仓库累计 50k+ Stars</strong><span>持续参与 · 公开可查</span></div>
-        <div class="opensource-grid">
-          <a class="opensource-card" href="https://github.com/testng-team/testng/pull/3330" target="_blank" rel="noreferrer noopener"><span class="card-index">01</span><span class="contribution-label">开源贡献</span><strong>TestNG</strong><span class="repo-name">testng-team/testng · PR #3330</span><p>补充 <code>@Ignore</code> 与嵌套类行为的文档说明和回归示例。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>2.1k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/corsairdev/corsair/pull/593" target="_blank" rel="noreferrer noopener"><span class="card-index">02</span><span class="contribution-label">开源贡献</span><strong>Corsair</strong><span class="repo-name">corsairdev/corsair · PR #593</span><p>修复空签名密钥的 HMAC 校验行为，并补充安全回归测试。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>11.1k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/nageoffer/ragent/pull/103" target="_blank" rel="noreferrer noopener"><span class="card-index">03</span><span class="contribution-label">开源贡献</span><strong>RAgent</strong><span class="repo-name">nageoffer/ragent · PR #103 / #110</span><p>修复 Redis 缓存反序列化失败，并将 Vite 开发服务约束到 IPv4 回环地址。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>3.8k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/agentscope-ai/agentscope-java/pull/2530" target="_blank" rel="noreferrer noopener"><span class="card-index">04</span><span class="contribution-label">开源贡献</span><strong>AgentScope Java</strong><span class="repo-name">agentscope-ai/agentscope-java · PR #2530</span><p>参与 Docker 沙箱文件传输的流式处理能力与测试完善。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>5.4k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/iflytek/skillhub/pull/689" target="_blank" rel="noreferrer noopener"><span class="card-index">05</span><span class="contribution-label">开源贡献</span><strong>SkillHub</strong><span class="repo-name">iflytek/skillhub · PR #689</span><p>支持 API 与 Actuator 分离部署的 smoke test，并拦截 HTML 回退。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>4.9k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/juanjuandog/FinSight-AI/pull/82" target="_blank" rel="noreferrer noopener"><span class="card-index">06</span><span class="contribution-label">开源贡献</span><strong>FinSight-AI</strong><span class="repo-name">juanjuandog/FinSight-AI · PR #82</span><p>修复历史行情回退语义，让数据缺失显式暴露而不是静默伪装成功。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>1.0k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-          <a class="opensource-card" href="https://github.com/super-productivity/super-productivity/pull/9834" target="_blank" rel="noreferrer noopener"><span class="card-index">07</span><span class="contribution-label">开源贡献</span><strong>Super Productivity</strong><span class="repo-name">super-productivity/super-productivity · PR #9834</span><p>新增可配置的任务复制快捷键，复用统一复制服务，并补充快捷键、服务与上下文菜单测试。</p><span class="card-meta"><span class="star-badge"><svg class="star-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2-4.6-4.4 6.3-.9L12 2.8Z" /></svg><b>21.7k</b><small>STARS</small></span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></span></a>
-        </div>
-      </section>
-
-      <section class="work-section section-shell" id="work" aria-labelledby="work-title" data-reveal>
-        <div class="section-heading">
-          <div><span class="section-number">02</span><span class="kicker">SELECTED BUILDS</span><h2 id="work-title">两个项目，<br /><em>两种工程边界。</em></h2></div>
-          <p>BuySense 解决购买决策中的语义、检索和确定性约束；RouteSmith 解决多个模型接入后的协议、路由、额度和故障治理。</p>
-        </div>
-        <div class="project-grid">
-          <article class="project-card project-card-primary">
-            <div class="project-card-head"><span class="project-code">BUILD / 01</span><span class="project-type">BOUNDED DECISION AGENT</span></div>
-            <div class="project-image"><img src="assets/buysense-console.png" alt="BuySense 智购决策工作台界面" loading="lazy" /><span class="image-stamp">DECISION<br />LOOP</span></div>
-            <div class="project-card-body">
-              <div><h3>BuySense</h3><p>智购决策 Agent / 多领域搜广推与组合决策平台</p></div>
-              <p class="project-description">以 Java 17 / Spring Boot 构建购物决策多 Agent 系统，通过角色任务交接、搜广推融合、兼容图组合优化、可信零售数据和可恢复 Run，将自然语言需求转为证据可追溯的购买套装。</p>
-              <div class="tag-row"><span>Multi-Agent</span><span>Weighted RRF</span><span>Retail Provider SPI</span><span>Agent Evals</span></div>
-              <a class="card-action" href="projects/buysense.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
-            </div>
-          </article>
-          <article class="project-card project-card-secondary">
-            <div class="project-card-head"><span class="project-code">BUILD / 02</span><span class="project-type">AI INFRASTRUCTURE</span></div>
-            <div class="project-card-body">
-              <div><h3>RouteSmith</h3><p>智路网关 / 多模型智能路由与治理平台</p></div>
-              <p class="project-description">以 Spring WebFlux 统一 OpenAI / Anthropic 协议，先做能力硬过滤，再按成本、吞吐、EWMA 延迟与 SLO 路由，并用熔断、幂等和 SQL 预算账本守住失败与额度边界。</p>
-              <div class="mini-flow" aria-label="RouteSmith 请求链路"><span>REQUEST</span><i></i><span>ROUTE</span><i></i><span>TRACE</span></div>
-              <div class="tag-row"><span>请求感知路由</span><span>延迟 SLO</span><span>协议适配</span><span>故障转移</span></div>
-              <a class="card-action" href="projects/routesmith.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
-            </div>
-            <div class="project-image project-image-small"><img src="assets/routesmith-dashboard.png" alt="RouteSmith 多模型治理控制台界面" loading="lazy" /></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="contact-section" data-reveal>
-        <div class="section-shell contact-inner"><div><span class="kicker">PUBLIC ENGINEERING RECORD</span><h2>代码、评测与协作记录<br /><em>都可继续追问。</em></h2></div><a class="button button-primary" href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank">查看 GitHub <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a></div>
-      </section>
-    </main>
-    <footer class="site-footer"><span>&copy; <span data-year></span> 梁宸 / Engineering Archive</span><span>Java Backend · Agent Engineering · Open Source</span></footer>
-    <script src="assets/site.js"></script>
-  </body>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <meta name="description" content="梁宸，大连理工大学 2027 届本科生。这里展示 Java 后端与 AI 应用项目，以及已合并的开源贡献。" />
+ <meta name="theme-color" content="#f8fafc" />
+ <meta property="og:title" content="梁宸｜Java 后端与 AI 应用开发作品集" />
+ <meta property="og:description" content="项目介绍、源码与已合并的开源贡献。" />
+ <meta property="og:type" content="website" />
+ <title>梁宸｜Java 后端与 AI 应用开发作品集</title>
+ <link rel="icon" href="data:," />
+ <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+ <a class="skip-link" href="#top">跳到主要内容</a>
+ <header class="site-header" data-header><div class="site-header-inner">
+  <a class="brand" href="#top" aria-label="梁宸作品集首页"><span class="brand-mark">LC</span><span class="brand-copy"><strong>梁宸</strong><small>个人作品集</small></span></a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="打开导航"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sr-only">打开导航</span></button>
+  <nav id="site-nav" class="site-nav" aria-label="主导航"><a href="#opensource">开源贡献</a><a href="#work">项目介绍</a><a class="nav-external" href="https://github.com/ShinyHero666" target="_blank" rel="noreferrer noopener">GitHub <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></nav>
+ </div></header>
+ <main id="top" tabindex="-1">
+  <section class="home-hero page-width" aria-labelledby="hero-title">
+   <div class="hero-copy">
+    <p class="education-label"><span class="education-dot" aria-hidden="true"></span>大连理工大学 · 网络工程 · 2027 届</p>
+    <h1 id="hero-title">梁宸</h1>
+    <p class="hero-role">Java 后端与 AI 应用开发</p>
+    <p class="hero-intro">这里记录我的项目实现与开源贡献。<br />可以直接查看源码、设计说明和测试。</p>
+    <div class="hero-actions"><a class="button button-primary" href="#work">查看项目 <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="button button-quiet" href="#opensource">查看开源贡献</a></div>
+    <p class="hero-facts"><span><strong>7</strong> 项 PR 已合并</span><span><strong>6</strong> 个开源项目</span></p>
+   </div>
+   <aside class="project-shortcuts" aria-labelledby="shortcuts-title">
+    <div class="shortcuts-heading"><h2 id="shortcuts-title">项目速览</h2><span>02 个项目</span></div>
+    <a class="project-shortcut" href="projects/buysense.html"><span class="shortcut-symbol" aria-hidden="true">B</span><span class="shortcut-copy"><strong>BuySense <span>智购决策</span></strong><small>商品检索、套装推荐与确认校验</small></span><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="project-shortcut" href="projects/routesmith.html"><span class="shortcut-symbol gateway-symbol" aria-hidden="true">R</span><span class="shortcut-copy"><strong>RouteSmith <span>智路网关</span></strong><small>多模型接入、请求路由与额度管理</small></span><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="shortcuts-footer"><span>项目说明</span><span>源码</span><span>测试记录</span></div>
+   </aside>
+  </section>
+  <section class="content-section open-source-section" id="opensource" aria-labelledby="opensource-title"><div class="page-width">
+   <div class="section-heading"><div><p class="eyebrow">公开的代码贡献</p><h2 id="opensource-title">开源贡献</h2></div><p>7 项 PR 已合并，涉及 6 个项目。<br />点击 PR，查看具体改动与讨论。</p></div>
+   <div class="contributions-grid"><article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">行情数据可信</span><span class="repo-stars" title="juanjuandog/FinSight-AI 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>1,031</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>FinSight-AI</h3><p class="repo-name">juanjuandog/FinSight-AI</p><p class="contribution-description">修复行情失败后返回模拟 K 线的问题，明确数据来源与状态，并补充回归测试。</p>
+ <div class="contribution-links"><a href="https://github.com/juanjuandog/FinSight-AI/pull/82" target="_blank" rel="noreferrer noopener" aria-label="查看 FinSight-AI PR 82">PR #82 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article>
+<article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">缓存兼容与开发环境</span><span class="repo-stars" title="nageoffer/ragent 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>3,912</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>RAgent</h3><p class="repo-name">nageoffer/ragent</p><p class="contribution-description">修复 Jackson 缓存反序列化异常，并修正 Vite 开发服务的回环地址绑定。</p>
+ <div class="contribution-links"><a href="https://github.com/nageoffer/ragent/pull/103" target="_blank" rel="noreferrer noopener" aria-label="查看 RAgent PR 103">PR #103 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="https://github.com/nageoffer/ragent/pull/110" target="_blank" rel="noreferrer noopener" aria-label="查看 RAgent PR 110">PR #110 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article>
+<article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">Webhook 签名校验</span><span class="repo-stars" title="corsairdev/corsair 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>11,325</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>Corsair</h3><p class="repo-name">corsairdev/corsair</p><p class="contribution-description">修复空密钥下默认放行的 HMAC 校验逻辑，补充签名校验回归测试。</p>
+ <div class="contribution-links"><a href="https://github.com/corsairdev/corsair/pull/593" target="_blank" rel="noreferrer noopener" aria-label="查看 Corsair PR 593">PR #593 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article>
+<article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">任务操作与快捷键</span><span class="repo-stars" title="super-productivity/super-productivity 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>21,851</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>Super Productivity</h3><p class="repo-name">super-productivity/super-productivity</p><p class="contribution-description">新增可配置的任务复制快捷键，复用复制服务，并补充相关测试。</p>
+ <div class="contribution-links"><a href="https://github.com/super-productivity/super-productivity/pull/9834" target="_blank" rel="noreferrer noopener" aria-label="查看 Super Productivity PR 9834">PR #9834 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article>
+<article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">部署检查与故障识别</span><span class="repo-stars" title="iflytek/skillhub 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>5,035</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>SkillHub</h3><p class="repo-name">iflytek/skillhub</p><p class="contribution-description">支持 API 与 Actuator 分离部署的检查，识别 HTML 回退造成的错误健康结果。</p>
+ <div class="contribution-links"><a href="https://github.com/iflytek/skillhub/pull/689" target="_blank" rel="noreferrer noopener" aria-label="查看 SkillHub PR 689">PR #689 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article>
+<article class="contribution-card">
+ <div class="contribution-top"><span class="contribution-kind">测试框架文档与示例</span><span class="repo-stars" title="testng-team/testng 的仓库 Stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg><span>2,056</span><span class="sr-only">仓库 Stars</span></span></div>
+ <h3>TestNG</h3><p class="repo-name">testng-team/testng</p><p class="contribution-description">补充 @Ignore 与嵌套类行为的文档说明和回归示例。</p>
+ <div class="contribution-links"><a href="https://github.com/testng-team/testng/pull/3330" target="_blank" rel="noreferrer noopener" aria-label="查看 TestNG PR 3330">PR #3330 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+ </article></div>
+   <p class="section-note">卡片中的 Stars 为项目仓库数据 · 2026.09.07</p>
+  </div></section>
+  <section class="content-section" id="work" aria-labelledby="work-title"><div class="page-width">
+   <div class="section-heading"><div><p class="eyebrow">从需求到实现</p><h2 id="work-title">项目介绍</h2></div><p>一个围绕商品选购，另一个围绕模型接入。<br />详情页包含设计思路、实现与验证。</p></div>
+   <div class="projects-grid">
+    <article class="project-card"><a class="project-cover" href="projects/buysense.html" aria-label="查看 BuySense 项目"><img src="assets/buysense-console.png" alt="BuySense 商品选购工作台" width="1440" height="960" loading="lazy" /></a><div class="project-card-body"><p class="project-category">Java / Spring Boot · AI 应用</p><h3>BuySense <span>智购决策 Agent</span></h3><p>围绕预算、用途和设备兼容性生成选购方案，整合搜索、推荐与赞助候选；支持异步执行、方案复核与对照评测。</p><div class="tag-row"><span>多角色协作</span><span>商品组合约束</span><span>对照评测</span></div><div class="project-actions"><a class="text-link" href="projects/buysense.html">查看项目详情 <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/ShinyHero666/BuySense-Agent" target="_blank" rel="noreferrer noopener">源码 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+    <article class="project-card"><a class="project-cover" href="projects/routesmith.html" aria-label="查看 RouteSmith 项目"><img src="assets/routesmith-dashboard.png" alt="RouteSmith 模型路由与用量控制台" width="1440" height="960" loading="lazy" /></a><div class="project-card-body"><p class="project-category">Java / Spring WebFlux · 模型网关</p><h3>RouteSmith <span>智路网关</span></h3><p>为不同模型服务提供统一入口，按能力、成本与响应状态选择上游；处理协议差异、故障转移和调用额度校验。</p><div class="tag-row"><span>协议适配</span><span>请求路由</span><span>预算管理</span></div><div class="project-actions"><a class="text-link" href="projects/routesmith.html">查看项目详情 <svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/ShinyHero666/RouteSmith" target="_blank" rel="noreferrer noopener">源码 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+   </div>
+  </div></section>
+  <section class="more-section page-width" aria-label="更多代码"><div><h2>源码与更新记录</h2><p>更多项目和公开协作记录，收录在我的 GitHub。</p></div><a class="button button-quiet" href="https://github.com/ShinyHero666" target="_blank" rel="noreferrer noopener">ShinyHero666 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></section>
+ </main>
+ <footer class="site-footer"><div class="page-width"><span>&copy; <span data-year>2026</span> 梁宸 · 个人作品集</span><a href="#top">返回顶部 ↑</a></div></footer>
+ <script src="assets/site.js"></script>
+</body>
 </html>
