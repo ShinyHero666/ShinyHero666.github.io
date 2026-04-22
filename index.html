@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="梁宸的 AI 应用与开源协作工程档案，聚焦 Agent 编排、模型基础设施与可审计的数据闭环。" />
+    <meta name="description" content="梁宸的 AI 应用与开源协作工程档案，聚焦自适应决策系统、多模型网关与可审计工程链路。" />
     <meta property="og:title" content="梁宸 · Engineering Archive" />
-    <meta property="og:description" content="Agent 编排、模型基础设施与持续开源协作。" />
+    <meta property="og:description" content="自适应 AI 决策、模型基础设施与持续开源协作。" />
     <meta property="og:type" content="website" />
     <title>梁宸 · Engineering Archive</title>
     <link rel="icon" href="data:," />
@@ -23,9 +23,9 @@
           <span class="sr-only">打开导航</span>
         </button>
         <nav id="site-nav" class="site-nav" aria-label="主导航">
-          <a href="#work"><span>01</span>项目</a>
-          <a href="#method"><span>02</span>方法</a>
-          <a href="#opensource"><span>03</span>开源协作</a>
+          <a href="#opensource"><span>01</span>开源协作</a>
+          <a href="#work"><span>02</span>项目</a>
+          <a href="#method"><span>03</span>方法</a>
           <a class="nav-external" href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank">GitHub <svg class="icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
         </nav>
       </div>
@@ -45,7 +45,7 @@
           </div>
           <div class="hero-footnote"><span class="status-dot"></span> Java · Python · Agent Systems · Open Source</div>
         </div>
-        <div class="profile-board" aria-label="个人工程能力概览"><div class="profile-board-head"><span>ENGINEERING PROFILE</span><span>2026 / ACTIVE</span></div><div class="profile-board-title"><span>AI × BACKEND</span><strong>从模型能力到<br />可落地工程</strong></div><dl class="profile-summary"><div><dt>OPEN SOURCE</dt><dd><strong>多次</strong><span>公开 Issue / PR 协作</span></dd></div><div class="profile-stars"><dt>REACH</dt><dd><strong>22k+</strong><span>代表项目累计 Stars</span></dd></div><div><dt>FOCUS</dt><dd><strong>04</strong><span>编排 · 检索 · 治理 · 评测</span></dd></div></dl><div class="profile-board-foot"><span>JAVA / PYTHON / SPRING BOOT / FASTAPI</span><a href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank" aria-label="打开 GitHub">↗</a></div></div>
+        <div class="profile-board" aria-label="个人工程能力概览"><div class="profile-board-head"><span>ENGINEERING PROFILE</span><span>2026 / ACTIVE</span></div><div class="profile-board-title"><span>AI × BACKEND</span><strong>从模型能力到<br />可落地工程</strong></div><dl class="profile-summary"><div><dt>OPEN SOURCE</dt><dd><strong>多次</strong><span>公开 Issue / PR 协作</span></dd></div><div class="profile-stars"><dt>REACH</dt><dd><strong>22k+</strong><span>代表项目累计 Stars</span></dd></div><div><dt>FOCUS</dt><dd><strong>04</strong><span>编排 · 检索 · 治理 · 评测</span></dd></div></dl><div class="profile-board-foot"><span>JAVA / SPRING BOOT / WEBFLUX / REACT</span><a href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank" aria-label="打开 GitHub">↗</a></div></div>
       </section>
 
       <section class="metrics-band" aria-label="档案概览" data-reveal>
@@ -57,54 +57,9 @@
         </div>
       </section>
 
-      <section class="work-section section-shell" id="work" aria-labelledby="work-title" data-reveal>
-        <div class="section-heading">
-          <div><span class="section-number">01</span><span class="kicker">SELECTED BUILDS</span><h2 id="work-title">两个项目，<br /><em>两种工程边界。</em></h2></div>
-          <p>一个解决多角色 Agent 如何做出有证据的业务决策，一个解决模型服务如何被稳定地接入、路由和审计。</p>
-        </div>
-        <div class="project-grid">
-          <article class="project-card project-card-primary">
-            <div class="project-card-head"><span class="project-code">BUILD / 01</span><span class="project-type">AGENT APPLICATION</span></div>
-            <div class="project-image"><img src="assets/buysense-console.png" alt="BuySense 智购引擎决策工作台界面" loading="lazy" /><span class="image-stamp">DECISION<br />LOOP</span></div>
-            <div class="project-card-body">
-              <div><h3>BuySense</h3><p>智购引擎 / 多 Agent 搜广推决策系统</p></div>
-              <p class="project-description">把预算、品牌、兼容性和使用场景混合表达的购买需求，拆成可验证的召回、排序、价格与兼容性工具链。</p>
-              <div class="tag-row"><span>多路召回</span><span>RRF 精排</span><span>SSE Trace</span><span>离线评测</span></div>
-              <a class="card-action" href="projects/buysense.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
-            </div>
-          </article>
-          <article class="project-card project-card-secondary">
-            <div class="project-card-head"><span class="project-code">BUILD / 02</span><span class="project-type">AI INFRASTRUCTURE</span></div>
-            <div class="project-card-body">
-              <div><h3>RouteSmith</h3><p>智路网关 / 多模型智能路由与治理平台</p></div>
-              <p class="project-description">通过 Provider Adapter 隔离上游协议差异，把路由、健康检查、冷却、降级、配额、预算和审计收进统一控制面。</p>
-              <div class="mini-flow" aria-label="RouteSmith 请求链路"><span>REQUEST</span><i></i><span>ROUTE</span><i></i><span>TRACE</span></div>
-              <div class="tag-row"><span>双协议兼容</span><span>故障转移</span><span>配额预算</span></div>
-              <a class="card-action" href="projects/routesmith.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
-            </div>
-            <div class="project-image project-image-small"><img src="assets/routesmith-dashboard.png" alt="RouteSmith 多模型治理控制台界面" loading="lazy" /></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="method-section" id="method" aria-labelledby="method-title" data-reveal>
-        <div class="section-shell">
-          <div class="section-heading section-heading-dark">
-            <div><span class="section-number">02</span><span class="kicker">HOW I BUILD</span><h2 id="method-title">模型之外，<br /><em>把边界做实。</em></h2></div>
-            <p>Agent 的工程含金量，来自决策链条是否能被解释、被限制、被回放，也来自系统在失败时是否知道下一步该做什么。</p>
-          </div>
-          <div class="method-grid">
-            <article><span>01 / ORCHESTRATE</span><h3>任务编排</h3><p>意图解析、任务拆解、角色协作、人工确认与重规划。</p></article>
-            <article><span>02 / GOVERN</span><h3>工具治理</h3><p>Schema 契约、幂等、超时、重试、熔断和执行 Trace。</p></article>
-            <article><span>03 / VERIFY</span><h3>结果验证</h3><p>多路召回、确定性精排、证据链与结果一致性校验。</p></article>
-            <article><span>04 / IMPROVE</span><h3>持续评测</h3><p>离线数据集、回归门禁、运行指标和失败案例复盘。</p></article>
-          </div>
-        </div>
-      </section>
-
       <section class="opensource-section section-shell" id="opensource" aria-labelledby="opensource-title" data-reveal>
         <div class="section-heading open-source-heading">
-          <div><span class="section-number">03</span><span class="kicker">PUBLIC COLLABORATION</span><h2 id="opensource-title">持续参与<br /><em>开源协作。</em></h2></div>
+          <div><span class="section-number">01</span><span class="kicker">PUBLIC COLLABORATION</span><h2 id="opensource-title">持续参与<br /><em>开源协作。</em></h2></div>
           <div><p>围绕 Java 工具链、Agent 集成、Agentic RAG、模型运行时与 Skill 治理，持续参与多个开源项目的 Issue / PR 协作。</p><p class="subtle-note">以下为代表性公开记录，更多协作持续累积。</p></div>
         </div>
         <div class="opensource-toolbar"><span><i class="status-dot"></i> PUBLIC RECORDS</span><strong>代表项目累计 22k+ Stars</strong><span>链接均可公开核验</span></div>
@@ -117,11 +72,56 @@
         </div>
       </section>
 
+      <section class="work-section section-shell" id="work" aria-labelledby="work-title" data-reveal>
+        <div class="section-heading">
+          <div><span class="section-number">02</span><span class="kicker">SELECTED BUILDS</span><h2 id="work-title">两个项目，<br /><em>两种工程边界。</em></h2></div>
+          <p>一个用自适应工作流与 Planner-Critic 解决 3C 购买决策，一个用确定性网关统一模型协议、路由和治理。</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-card-primary">
+            <div class="project-card-head"><span class="project-code">BUILD / 01</span><span class="project-type">ADAPTIVE AI APPLICATION</span></div>
+            <div class="project-image"><img src="assets/buysense-console.png" alt="BuySense 智购引擎决策工作台界面" loading="lazy" /><span class="image-stamp">DECISION<br />LOOP</span></div>
+            <div class="project-card-body">
+              <div><h3>BuySense</h3><p>智购引擎 / 3C 智能决策与搜广推系统</p></div>
+              <p class="project-description">按业务复杂度单路由至确定性工作流或 Planner-Critic 混合链路，让语义推理与预算、兼容性等硬约束各守边界。</p>
+              <div class="tag-row"><span>自适应路由</span><span>Weighted RRF</span><span>Planner-Critic</span><span>真实基准</span></div>
+              <a class="card-action" href="projects/buysense.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
+            </div>
+          </article>
+          <article class="project-card project-card-secondary">
+            <div class="project-card-head"><span class="project-code">BUILD / 02</span><span class="project-type">AI INFRASTRUCTURE</span></div>
+            <div class="project-card-body">
+              <div><h3>RouteSmith</h3><p>智路网关 / 多模型智能路由与治理平台</p></div>
+              <p class="project-description">通过 Provider Adapter 隔离上游协议差异，把路由、健康检查、冷却、降级、配额、预算和审计收进统一控制面。</p>
+              <div class="mini-flow" aria-label="RouteSmith 请求链路"><span>REQUEST</span><i></i><span>ROUTE</span><i></i><span>TRACE</span></div>
+              <div class="tag-row"><span>可解释路由</span><span>双协议适配</span><span>故障转移</span><span>用量账本</span></div>
+              <a class="card-action" href="projects/routesmith.html">阅读工程档案 <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" /></svg></a>
+            </div>
+            <div class="project-image project-image-small"><img src="assets/routesmith-dashboard.png" alt="RouteSmith 多模型治理控制台界面" loading="lazy" /></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="method-section" id="method" aria-labelledby="method-title" data-reveal>
+        <div class="section-shell">
+          <div class="section-heading section-heading-dark">
+            <div><span class="section-number">03</span><span class="kicker">HOW I BUILD</span><h2 id="method-title">模型之外，<br /><em>把边界做实。</em></h2></div>
+            <p>Agent 的工程含金量，来自决策链条是否能被解释、被限制、被回放，也来自系统在失败时是否知道下一步该做什么。</p>
+          </div>
+          <div class="method-grid">
+            <article><span>01 / ORCHESTRATE</span><h3>任务编排</h3><p>复杂度识别、单路径路由、任务规划、澄清门禁与失败降级。</p></article>
+            <article><span>02 / GOVERN</span><h3>工具治理</h3><p>Schema 契约、幂等、超时、重试、熔断和执行 Trace。</p></article>
+            <article><span>03 / VERIFY</span><h3>结果验证</h3><p>多路召回、确定性精排、证据链与结果一致性校验。</p></article>
+            <article><span>04 / IMPROVE</span><h3>持续评测</h3><p>离线数据集、回归门禁、运行指标和失败案例复盘。</p></article>
+          </div>
+        </div>
+      </section>
+
       <section class="contact-section" data-reveal>
         <div class="section-shell contact-inner"><div><span class="kicker">END OF CURRENT FILE</span><h2>代码和公开记录<br /><em>都在这里。</em></h2></div><a class="button button-primary" href="https://github.com/ShinyHero666" rel="noreferrer noopener" target="_blank">查看 GitHub <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a></div>
       </section>
     </main>
-    <footer class="site-footer"><span>© <span data-year></span> 梁宸 / Engineering Archive</span><span>Built with Java · Python · Agent systems</span></footer>
+    <footer class="site-footer"><span>© <span data-year></span> 梁宸 / Engineering Archive</span><span>Built with Java · React · Agent systems</span></footer>
     <script src="assets/site.js"></script>
   </body>
 </html>
