@@ -11,10 +11,15 @@
   <body>
     <header class="site-header" data-header>
       <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span>梁宸</span></a>
-      <nav class="site-nav"><a href="../index.html#work">返回项目</a><a href="https://github.com/ShinyHero666/ModelHub-Gateway">项目仓库</a></nav>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <span class="sr-only">打开导航</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/ModelHub-Gateway">项目仓库</a></nav>
     </header>
-    <main>
-      <section class="case-hero">
+<a class="skip-link" href="#top">跳到主要内容</a>
+    <main id="top" tabindex="-1">
+      <section class="case-hero" data-reveal>
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
         <div class="case-hero-grid">
           <div>
@@ -26,7 +31,7 @@
         </div>
       </section>
       <div class="case-body">
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">01 / PROBLEM</span><h2>为什么需要网关</h2></div>
           <div>
             <p>当多个 Agent 直接接入不同模型服务时，协议适配、凭证、重试和成本逻辑会散落在业务代码中。模型切换会扩大改动范围，也难以统一追踪一次请求经过了哪个模型、花费多少、为何降级。</p>
@@ -40,7 +45,7 @@
             </table>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>请求治理链路</h2></div>
           <div>
             <p>业务侧只依赖兼容协议，网关根据调用身份、模型别名、健康状态和预算策略选择上游。每次尝试、降级与结算都进入统一请求台账。</p>
@@ -53,7 +58,7 @@
             </div>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">03 / RELIABILITY</span><h2>可靠性设计</h2></div>
           <div><ul class="case-list">
             <li>将客户端 API Key 与上游供应商凭证隔离，避免业务应用直接持有模型密钥。</li>
@@ -62,7 +67,7 @@
             <li>流式响应保留生命周期事件，异常中断也能形成可追踪的请求记录。</li>
           </ul></div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">04 / OPERATIONS</span><h2>治理控制面</h2></div>
           <div>
             <p>React 控制台提供模型与供应商状态、API Key、用户团队、配额预算、请求日志和治理策略视图；Prometheus 暴露运行指标，便于对接现有监控告警体系。</p>
@@ -73,7 +78,7 @@
             </div>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
           <div><p>Rust、Axum、PostgreSQL、React、TypeScript、Prometheus、Docker、OpenAI-compatible API、Anthropic-compatible API。</p></div>
         </section>

@@ -11,10 +11,15 @@
   <body>
     <header class="site-header" data-header>
       <a class="brand" href="../index.html"><span class="brand-mark">LC</span><span>梁宸</span></a>
-      <nav class="site-nav"><a href="../index.html#work">返回项目</a><a href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a></nav>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" title="打开导航">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <span class="sr-only">打开导航</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a></nav>
     </header>
-    <main>
-      <section class="case-hero">
+<a class="skip-link" href="#top">跳到主要内容</a>
+    <main id="top" tabindex="-1">
+      <section class="case-hero" data-reveal>
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
         <div class="case-hero-grid">
           <div>
@@ -26,7 +31,7 @@
         </div>
       </section>
       <div class="case-body">
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">01 / PROBLEM</span><h2>解决什么问题</h2></div>
           <div>
             <p>用户不会只输入标准关键词，真实问法往往同时包含预算、用途、品牌偏好、性能、兼容性和交付要求。传统检索容易漏掉约束，纯 LLM 推荐又可能虚构价格、库存或商品能力。</p>
@@ -39,7 +44,7 @@
             </table>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>决策链路</h2></div>
           <div>
             <p>主控 Agent 维护任务边界和预算，角色 Agent 只在自己的职责范围内提出候选与证据。商品价格、库存、兼容性和广告规则由工具服务校验，避免模型直接决定事实。</p>
@@ -52,7 +57,7 @@
             </div>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">03 / CONTROL</span><h2>Agent 如何受控</h2></div>
           <div><ul class="case-list">
             <li>固定六类角色：Intent、Search、Recommendation、Ads、Critic、Lead，避免角色无限扩张。</li>
@@ -61,7 +66,7 @@
             <li>Critic 只检查证据完整性、约束冲突与广告干扰，不负责重新生成全部结果。</li>
           </ul></div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">04 / EVALUATION</span><h2>评测证据</h2></div>
           <div>
             <p>项目内置 120 条确定性检索回归集与 1,200 个合成 SPU，以下结果用于验证召回、排序和业务约束，不等同于线上流量指标。</p>
@@ -72,7 +77,7 @@
             </div>
           </div>
         </section>
-        <section class="case-section">
+        <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
           <div><p>React、TypeScript、Python、FastAPI、SQLite、ECharts、SSE、JSON Schema、Multi-Agent、RRF、离线评测。</p></div>
         </section>
