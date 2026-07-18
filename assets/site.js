@@ -3,6 +3,49 @@ document.documentElement.classList.add('js');
 const header = document.querySelector('[data-header]');
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
+const main = document.querySelector('main');
+const openSourceSection = document.querySelector('#opensource');
+const workSection = document.querySelector('#work');
+const methodSection = document.querySelector('#method');
+
+// Put public work first and keep the rendered, keyboard, and screen-reader order aligned.
+if (main && openSourceSection && workSection) {
+  main.insertBefore(openSourceSection, workSection);
+}
+
+const openSourceLink = nav?.querySelector('a[href="#opensource"]');
+if (nav && openSourceLink) {
+  nav.insertBefore(openSourceLink, nav.firstElementChild);
+}
+
+[
+  [openSourceSection, '01'],
+  [workSection, '02'],
+  [methodSection, '03'],
+].forEach(([section, number]) => {
+  const numberNode = section?.querySelector('.section-number');
+  if (numberNode) numberNode.textContent = number;
+});
+
+const navLabels = new Map([
+  ['#opensource', '01'],
+  ['#work', '02'],
+  ['#method', '03'],
+]);
+nav?.querySelectorAll('a[href^="#"]').forEach((link) => {
+  const numberNode = link.querySelector('span');
+  if (numberNode && navLabels.has(link.getAttribute('href'))) {
+    numberNode.textContent = navLabels.get(link.getAttribute('href'));
+  }
+});
+
+const heroCopy = document.querySelector('.hero-copy');
+if (heroCopy) {
+  const identity = document.createElement('p');
+  identity.className = 'section-number';
+  identity.textContent = '梁宸 / LIANG CHEN';
+  heroCopy.insertBefore(identity, heroCopy.firstElementChild);
+}
 
 document.querySelectorAll('[data-year]').forEach((node) => {
   node.textContent = String(new Date().getFullYear());
