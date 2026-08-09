@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BuySense 智购引擎：3C 商品智能决策与搜广推 Agent 项目案例。" />
+    <meta name="description" content="BuySense 智购引擎：自适应工作流与 Planner-Critic 协同的 3C 商品智能决策系统。" />
     <title>BuySense 智购引擎 · 梁宸作品集</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="../assets/site.css" />
@@ -15,7 +15,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
         <span class="sr-only">打开导航</span>
       </button>
-      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a></nav>
+      <nav id="site-nav" class="site-nav" aria-label="案例导航"><a href="../index.html#work">返回项目</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent">项目仓库</a><a target="_blank" rel="noreferrer noopener" href="https://github.com/ShinyHero666/BuySense-Agent/blob/main/code/java-control-plane/docs/PROJECT_REVIEW_CN.md">架构复审</a></nav>
     </header>
 <a class="skip-link" href="#top">跳到主要内容</a>
     <main id="top" tabindex="-1">
@@ -23,9 +23,9 @@
         <a class="case-back" href="../index.html#work">← 返回作品集</a>
         <div class="case-hero-grid">
           <div>
-            <span class="section-index">PROJECT 01 · AGENT APPLICATION</span>
+            <span class="section-index">PROJECT 01 · ADAPTIVE AI APPLICATION</span>
             <h1>BuySense<span>智购引擎</span></h1>
-            <p>面向 3C 商品购买决策的多 Agent 搜广推系统。把模糊需求转成可执行约束，并让模型规划与确定性算法在同一条证据链上协作。</p>
+            <p>面向 3C 商品购买决策的自适应 AI 系统。生产请求只走确定性工作流或 Planner-Critic 混合链路中的一条，让模型负责语义推理，让 Java 守住预算、品类与兼容性。</p>
           </div>
           <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
         </div>
@@ -45,41 +45,52 @@
           </div>
         </section>
         <section class="case-section" data-reveal>
-          <div><span class="section-index">02 / FLOW</span><h2>决策链路</h2></div>
+          <div><span class="section-index">02 / FLOW</span><h2>自适应决策链路</h2></div>
           <div>
-            <p>主控 Agent 维护任务边界和预算，角色 Agent 只在自己的职责范围内提出候选与证据。商品价格、库存、兼容性和广告规则由工具服务校验，避免模型直接决定事实。</p>
-            <div class="architecture" aria-label="BuySense 架构链路">
-              <div><strong>Query 理解</strong><span>实体、预算、偏好、硬约束</span></div>
-              <div><strong>多路召回</strong><span>关键词、语义、规则与个性化</span></div>
-              <div><strong>Agent 协作</strong><span>搜索、推荐、广告、质检</span></div>
-              <div><strong>确定性精排</strong><span>RRF、兼容性、价格、库存</span></div>
-              <div><strong>证据输出</strong><span>推荐理由、风险与备选方案</span></div>
+            <p>ExecutionRouter 根据品类数、套装、多目标、模糊表达和信息完整度选择单条生产路径。简单请求不调用模型；复杂请求由 Planner 增强检索词和软偏好，所有候选仍经过同一套确定性召回、融合与约束校验。</p>
+            <div class="architecture" aria-label="BuySense 自适应决策架构">
+              <div><strong>需求解析</strong><span>预算、品类、用途与约束强度</span></div>
+              <div><strong>自适应路由</strong><span>Workflow / Planner-Critic</span></div>
+              <div><strong>多路召回</strong><span>Search / Recommendation / Ads</span></div>
+              <div><strong>融合与组合</strong><span>Weighted RRF / 全局约束枚举</span></div>
+              <div><strong>证据审核</strong><span>APPROVE / RETRIEVE / CLARIFY</span></div>
             </div>
           </div>
         </section>
         <section class="case-section" data-reveal>
-          <div><span class="section-index">03 / CONTROL</span><h2>Agent 如何受控</h2></div>
+          <div><span class="section-index">03 / CONTROL</span><h2>模型边界与工程控制</h2></div>
           <div><ul class="case-list">
-            <li>固定六类角色：Intent、Search、Recommendation、Ads、Critic、Lead，避免角色无限扩张。</li>
-            <li>单次运行限制任务数、模型调用数与复议次数，超限后走确定性降级路径。</li>
-            <li>异步 Run + SSE 返回事件流，支持取消、幂等提交和失败恢复。</li>
-            <li>Critic 只检查证据完整性、约束冲突与广告干扰，不负责重新生成全部结果。</li>
+            <li>预算、必选品类、广告偏好和兼容性是不可覆盖的硬约束；Query Rewrite 只能补充检索词、用途和软偏好。</li>
+            <li>Search、Recommendation、Ads 通过 Weighted RRF 融合，并在最终排序前执行前三位广告保护和硬过滤。</li>
+            <li>套装选择采用有界全局枚举，同时满足预算、品类覆盖与兼容性，避免逐项贪心产生局部最优。</li>
+            <li>Critic 只能返回 APPROVE、RETRIEVE 或 CLARIFY；补充检索最多一次，澄清建议还需通过确定性策略门。</li>
+            <li>异步 Run 支持幂等创建、取消、SSE 事件回放、状态恢复和购物车草案确认。</li>
           </ul></div>
         </section>
         <section class="case-section" data-reveal>
-          <div><span class="section-index">04 / EVALUATION</span><h2>评测证据</h2></div>
+          <div><span class="section-index">04 / EVALUATION</span><h2>真实评测证据</h2></div>
           <div>
-            <p>项目内置 120 条确定性检索回归集与 1,200 个合成 SPU，以下结果用于验证召回、排序和业务约束，不等同于线上流量指标。</p>
+            <p>40 条人工业务回归覆盖单品工作流、复杂混合链路、套装、拒绝广告和必须澄清场景，硬约束与广告策略违规均为 0。另以 4 条复杂问句真实接入 DeepSeek，强制双轨运行用于校准路由，而非模拟线上指标。</p>
             <div class="evidence-row">
-              <div><strong>0.958</strong><span>Recall@10 · 合成回归集</span></div>
-              <div><strong>0.996</strong><span>NDCG@10 · 合成回归集</span></div>
-              <div><strong>0</strong><span>业务约束违规数</span></div>
+              <div><strong>40</strong><span>人工业务回归用例</span></div>
+              <div><strong>0</strong><span>硬约束与广告策略违规</span></div>
+              <div><strong>100%</strong><span>DeepSeek 双轨任务完成率</span></div>
             </div>
+            <table class="decision-table">
+              <thead><tr><th>指标</th><th>确定性工作流</th><th>Planner-Critic 混合链路</th></tr></thead>
+              <tbody>
+                <tr><td>模型调用 / 降级</td><td>0 / 0</td><td>8 / 0</td></tr>
+                <tr><td>Token 总量</td><td>0</td><td>2,282</td></tr>
+                <tr><td>P50 / P95 延迟</td><td>0 / 2 ms</td><td>2,641 / 2,767 ms</td></tr>
+                <tr><td>Category Recall@10</td><td>100%</td><td>100%</td></tr>
+              </tbody>
+            </table>
+            <p>样本量为 4，仅用于验证复杂链路可用性和路由成本边界，不宣称为线上推荐质量或生产 SLA。</p>
           </div>
         </section>
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>React、TypeScript、Python、FastAPI、SQLite、ECharts、SSE、JSON Schema、Multi-Agent、RRF、离线评测。</p></div>
+          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2/PostgreSQL、SSE、React、TypeScript、ECharts、LLM、Planner-Critic、Weighted RRF。</p></div>
         </section>
       </div>
     </main>
