@@ -25,7 +25,7 @@
           <div>
             <span class="section-index">PROJECT 01 · BOUNDED DECISION AGENT</span>
             <h1>BuySense<span>智购决策 Agent</span></h1>
-            <p>以 3C 数码为主业务、户外露营为扩展验证的智能购买决策平台。Java 主控按请求复杂度选择澄清、确定性工作流或 Planner-Critic 混合链路，并通过受保护 Bridge 复用 Python/Shopify 数据面，让模型负责语义增强，让确定性服务守住预算、库存、广告与兼容性。</p>
+            <p>以 3C 数码为主业务、户外露营为扩展验证的智能购买决策平台。Java 主控按请求复杂度选择澄清、确定性工作流或 Planner-Critic 混合链路，并通过 Java Provider SPI 原生直连 Shopify Admin GraphQL，让模型负责语义增强，让确定性服务守住预算、库存、广告与兼容性。</p>
           </div>
           <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
         </div>
@@ -53,7 +53,7 @@
               <div><strong>领域与路由</strong><span>2 Domain Packs / 10 Capabilities</span></div>
               <div><strong>多路召回</strong><span>Search / Recommendation / Ads</span></div>
               <div><strong>融合与组合</strong><span>Weighted RRF / 全局约束枚举</span></div>
-              <div><strong>证据与运行</strong><span>Provider Bridge / Critic / Leased Run</span></div>
+              <div><strong>证据与运行</strong><span>Java Shopify / Critic / Leased Run</span></div>
             </div>
           </div>
         </section>
@@ -64,7 +64,7 @@
             <li>Search、Recommendation、Ads 通过 Weighted RRF 融合，并在最终排序前执行前三位广告保护和硬过滤。</li>
             <li>套装选择采用有界全局枚举，同时满足预算、品类覆盖与兼容性，避免逐项贪心产生局部最优。</li>
             <li>Critic 只能返回 APPROVE、RETRIEVE 或 CLARIFY；补充检索最多一次，澄清建议还需通过确定性策略门。</li>
-            <li>Catalog、Review、Pricing Provider 校验鉴权、来源指纹、版本、ID 分区与报价集合；受保护 Bridge 复用 Python/Shopify 数据面，远端降级为本地快照时确认失败关闭。</li>
+            <li>Catalog、Review、Pricing 通过 Java Provider SPI 解耦；Shopify 实现固定 GraphQL 查询、校验只读 Scope、版本、GID、元数据与报价集合，普通决策缓存目录，确认前强制刷新，fallback 快照不能用于确认。</li>
             <li>异步 Run 采用数据库原子准入、有界队列、租约续期与 fencing，支持取消、SSE 回放和过期任务恢复；确认前刷新价格、库存与兼容性，失败可重试，支付始终禁用。</li>
           </ul></div>
         </section>
@@ -80,20 +80,19 @@
             <table class="decision-table">
               <thead><tr><th>验证层</th><th>规模</th><th>结果</th></tr></thead>
               <tbody>
-                <tr><td>Java 单元 / 集成 / 合同</td><td>42 条</td><td>0 失败、0 错误；真实模型 1 条无凭证跳过</td></tr>
-                <tr><td>Python 数据面 / Bridge</td><td>153 条</td><td>全部通过，覆盖 Shopify 适配与桥接契约</td></tr>
-                <tr><td>TypeScript 上游契约</td><td>82 条</td><td>全部通过</td></tr>
+                <tr><td>Java 单元 / 集成 / 契约</td><td>49 条</td><td>0 失败、0 错误；真实模型 1 条无凭证跳过</td></tr>
+                <tr><td>Java Shopify GraphQL</td><td>7 条</td><td>覆盖直连、分页、确认刷新、Scope、版本、重复 JSON 与降级</td></tr>
                 <tr><td>合成确定性检索</td><td>120 Query / 1,200 SPU</td><td>硬过滤与广告策略违规 0</td></tr>
                 <tr><td>Playwright 用户链路</td><td>4 条</td><td>4/4 通过，结束后端口自动释放</td></tr>
                 <tr><td>真实商城 / Shopify</td><td>无凭证</td><td>不计入已验证结果</td></tr>
               </tbody>
             </table>
-            <p>目录是版本化参考快照；Provider 与 Bridge 由本地合同服务器验证。未配置真实 Shopify 凭证，因此不宣称真实商城库存、线上转化率或生产 SLA。</p>
+            <p>目录是版本化参考快照；Java Shopify Provider 由本地 Mock GraphQL 服务器做契约验证。未配置真实 Shopify 凭证，因此不宣称真实商城库存、线上转化率或生产 SLA。</p>
           </div>
         </section>
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、SSE、React、TypeScript、Python、LLM、Planner-Critic、Weighted RRF、HTTP Provider。</p></div>
+          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、Java HttpClient、Shopify GraphQL、SSE、React、TypeScript、LLM、Planner-Critic、Weighted RRF。</p></div>
         </section>
       </div>
     </main>
