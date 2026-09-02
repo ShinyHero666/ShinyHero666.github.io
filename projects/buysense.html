@@ -34,7 +34,7 @@
           <div>
             <span class="section-index">PROJECT 01 · BOUNDED DECISION AGENT</span>
             <h1>BuySense<span>智购决策 Agent</span></h1>
-            <p>面向 3C 数码与户外露营场景的智能购买决策平台。所有请求执行同一条有界协作链：LLM 负责补充软偏好和受约束的检索意图，Java 服务负责预算、品类、库存、兼容性、广告与交易边界。</p>
+            <p>面向 3C 数码与户外露营场景的购物决策多 Agent 系统。角色 Agent 负责意图理解、候选重排、任务交接、审核与解释，Java 服务负责预算、品类、库存、兼容性、广告和交易边界。</p>
           </div>
           <figure><img src="../assets/buysense-console.png" alt="BuySense 决策工作台" /></figure>
         </div>
@@ -58,13 +58,13 @@
         <section class="case-section" data-reveal>
           <div><span class="section-index">02 / FLOW</span><h2>有界协作链路</h2></div>
           <div>
-            <p>系统不再为请求设计容易误判的快慢路由。Intent Router 先解析显式约束并提出检索意图；Search 与 Ads 并行召回，Recommendation 基于搜索证据扩展候选；随后完成融合、组合求解、证据刷新、确定性审核和一次有界 Critic 修订。</p>
+            <p>每个 Role Agent 在自己的工具和权限范围内执行“观察上下文、选择工具、读取结果、发布结构化 Artifact”的循环。Intent Agent 解析需求后，Search 与 Ads 并行执行；Search 可向 Recommendation 发起受限任务交接，随后进入融合、组合求解、证据刷新、确定性审核、Critic 复核和 Lead 输出。</p>
             <div class="architecture" aria-label="BuySense 有界协作架构">
-              <div><strong>意图解析</strong><span>显式约束 / 检索意图 / Domain Pack</span></div>
-              <div><strong>多路召回</strong><span>Search + Ads 并行 / Recommendation 扩展</span></div>
+              <div><strong>意图 Agent</strong><span>显式约束 / 软偏好 / Domain Pack</span></div>
+              <div><strong>角色协作</strong><span>Search + Ads 并行 / Recommendation Handoff</span></div>
               <div><strong>融合与组合</strong><span>Weighted RRF / 兼容图枚举</span></div>
-              <div><strong>证据刷新</strong><span>价格 / 库存 / 评论切面</span></div>
-              <div><strong>审核与输出</strong><span>确定性 Audit / Critic / Lead</span></div>
+              <div><strong>可信证据</strong><span>价格 / 库存 / 评论聚合</span></div>
+              <div><strong>审核与输出</strong><span>Java Audit / Critic / Lead</span></div>
             </div>
           </div>
         </section>
@@ -73,13 +73,14 @@
           <div><span class="section-index">03 / CONTROL</span><h2>模型边界与工程控制</h2></div>
           <div>
             <ul class="case-list">
-              <li>Domain Pack 隔离目录、同义词、兼容图、评论切面与业务策略；当前以 3C 为主场景，并用户外露营验证领域扩展边界。</li>
-              <li>LLM 只能补充检索词、软偏好和既有 SKU 排序建议，不能覆盖预算、必选品类、库存、兼容性或广告策略。</li>
+              <li>Domain Pack 隔离目录、同义词、兼容图、评论切面和业务策略；当前以 3C 为主场景，并用户外露营验证领域扩展边界。</li>
+              <li>Role Agent 可动态选择已授权工具、发布 Artifact 或申请 Handoff；协调器限制任务数、交接深度、并发、模型调用、截止时间和修订次数。</li>
+              <li>模型负责检索词、软偏好、候选重排和证据表达，不能覆盖预算、品类、库存、兼容性、广告规则或交易权限。</li>
               <li>Search 与 Recommendation 使用 Weighted RRF 融合；Ads 走独立的相关性、质量、疲劳度、披露和展示位门禁。</li>
               <li>兼容图在预算内枚举可行套装，同时满足品类覆盖和搭配约束，避免逐项贪心产生局部最优。</li>
-              <li>Retail Provider SPI 解耦本地快照、HTTP 数据源和只读 Shopify GraphQL；确认前刷新价格与库存，远端故障快照不能直接确认。</li>
+              <li>Retail Provider SPI 解耦本地快照、HTTP 数据源和只读 Shopify GraphQL；独立 Review Provider 提供带样本量、维度、情感和置信度的评论聚合证据。</li>
               <li>异步 Run 采用数据库原子准入、有界执行器、租约续期和 fencing，支持取消、幂等复用、SSE 回放与过期任务恢复。</li>
-              <li>确定性 Audit 先于 Critic 执行，最多允许一次补充检索；最终只生成 <code>paymentAuthorized=false</code> 的购物车草案，不创建订单或发起支付。</li>
+              <li>确定性 Audit 先于 Critic 执行，最多允许一次 Critic 驱动的修订；确认前刷新价格库存，最终只生成 <code>paymentAuthorized=false</code> 的购物车草案。</li>
             </ul>
           </div>
         </section>
@@ -87,28 +88,28 @@
         <section class="case-section" data-reveal>
           <div><span class="section-index">04 / EVALUATION</span><h2>可复现工程证据</h2></div>
           <div>
-            <p>固定种子生成 1,200 个 SPU 与 120 个场景，用于检测检索、排序、硬过滤和广告策略漂移。该数据来自目录属性构造，是离线确定性回归，不冒充人工金标、线上转化率或生产 SLA。</p>
+            <p>评测将公开任务与本地隐藏 Gold 分离：12 个能力场景分别重复 3 次，并在确定性无模型基线、去 Critic 版本和完整多 Agent 版本上执行。三个变体使用相同目录快照、模型配置和评分契约，避免通过修改样本或提示词追逐结果。</p>
             <div class="evidence-row">
-              <div><strong>120</strong><span>固定回归场景</span></div>
-              <div><strong>95.83%</strong><span>Recall@10</span></div>
-              <div><strong>99.57%</strong><span>NDCG@10</span></div>
+              <div><strong>12×3×3</strong><span>隐藏集对照评测</span></div>
+              <div><strong>全部通过</strong><span>完整系统评测结果</span></div>
+              <div><strong>4 / 4</strong><span>人工复核与模型裁判一致</span></div>
             </div>
             <table class="decision-table">
               <thead><tr><th>验证层</th><th>规模</th><th>结果</th></tr></thead>
               <tbody>
-                <tr><td>Java 单元 / 集成 / 契约</td><td>50 项</td><td>0 失败、0 错误；1 项真实模型评测无凭证时跳过</td></tr>
-                <tr><td>Shopify Mock GraphQL</td><td>7 个契约场景</td><td>覆盖直连、分页、确认刷新、Scope、版本、重复字段与降级边界</td></tr>
-                <tr><td>合成检索基准</td><td>120 场景 / 1,200 SPU</td><td>硬过滤违规 0，广告策略违规 0</td></tr>
-                <tr><td>持续集成</td><td>GitHub Actions</td><td>Java 17 构建与测试通过</td></tr>
+                <tr><td>确定性评分器</td><td>预算、库存、兼容、广告与交易边界</td><td>完整系统全部通过，硬约束违规为 0</td></tr>
+                <tr><td>模型裁判</td><td>证据依据、取舍说明与风险表达</td><td>与业务硬门禁分离，避免模型裁判事实约束</td></tr>
+                <tr><td>抽样人工复核</td><td>4 个定性场景</td><td>与模型裁判 4 / 4 一致</td></tr>
+                <tr><td>本地回归分区</td><td>30 场景 × 2 次</td><td>覆盖两个 Domain Pack 与重复运行稳定性</td></tr>
               </tbody>
             </table>
-            <p>未配置真实 Shopify 店铺凭证，因此页面不宣称真实商城库存、交易结果或生产流量；真实模型评测保持显式开启，CI 不会静默消耗模型额度。</p>
+            <p>Java 评分器负责可确定的业务事实，模型裁判只评价证据和解释质量，定性样本再由人工复核。隐藏 Gold 保留在本地评分器中，公开仓库只提供任务、评测框架与运行方式。</p>
           </div>
         </section>
 
         <section class="case-section" data-reveal>
           <div><span class="section-index">05 / STACK</span><h2>技术实现</h2></div>
-          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、Java HttpClient、Shopify GraphQL、SSE、JUnit 5、LLM、Weighted RRF。</p></div>
+          <div><p>Java 17、Spring Boot、Spring JDBC、Flyway、H2 / PostgreSQL、Java HttpClient、Shopify GraphQL、SSE、JUnit 5、LLM、Weighted RRF、模型裁判评测。</p></div>
         </section>
       </div>
     </main>
